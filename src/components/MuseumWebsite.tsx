@@ -171,7 +171,7 @@ export function MuseumWebsite() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative  py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-12">
           <div className="flex items-center gap-20">
             {/* Hero Content */}

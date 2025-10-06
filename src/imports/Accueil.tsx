@@ -259,7 +259,7 @@ function Section() {
 
 function Header() {
   return (
-    <div className="absolute bg-[#faf7f0] box-border content-stretch flex flex-col items-start left-0 pb-[27.01px] pt-[27.02px] px-[50px] right-0 top-0" data-name="Header">
+    <div className="absolute bg-red-500 box-border content-stretch flex flex-col items-start left-0 pb-[27.01px] pt-[27.02px] px-[50px] right-0 top-0" data-name="Header">
       <Section />
     </div>
   );
@@ -683,7 +683,7 @@ function Container26() {
 
 function Frame1321316016() {
   return (
-    <div className="absolute content-stretch flex flex-col gap-[10px] items-center leading-[0] left-[calc(50%-0.5px)] top-[55px] translate-x-[-50%] w-[715px]">
+    <div className="absolute content-stretch flex flex-col gap-[10px] items-center leading-[0] left-[calc(50%-0.5px)] top-[55px] translate-x-[-50%] w-full">
       <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center min-w-full relative shrink-0 text-[#242424] text-[56px] w-[min-content]">
         <p className="leading-[normal]">Explorer les Oeuvres et Arts</p>
       </div>
@@ -2819,7 +2819,7 @@ function Content() {
 
 function HeroSection() {
   return (
-    <div className="absolute h-[789px] left-px overflow-clip top-[142px] w-[1440px]" data-name="Hero section">
+    <div className="absolute bg-red-500 h-[789px] left-px overflow-clip top-[142px] w-[1440px]" data-name="Hero section">
       <Content />
     </div>
   );

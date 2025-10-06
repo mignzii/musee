@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import svgPaths from "./svg-mt2y6mwl5o";
 import imgImage13 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
 import img663Thumb2MinJpg from "figma:asset/120d15f2cafe1da0fa66ab8e0ba849a41d1820c1.png";
@@ -226,7 +228,7 @@ function Container5() {
 function Link() {
   return (
     <div className="bg-[#ff5800] box-border content-stretch flex gap-[8px] items-start overflow-clip px-[26px] py-[16px] relative rounded-[4px] shrink-0" data-name="Link">
-      <div className="flex flex-col font-['Jost:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#101010] text-[18px] text-center text-nowrap">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#101010] text-[18px] text-center text-nowrap">
         <p className="leading-[27px] whitespace-pre">Acheter un billet</p>
       </div>
     </div>
@@ -282,14 +284,29 @@ function Component663Thumb2MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer() {
+function RsLayerWrapRsMaskWrapRsLayer({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
   return (
-    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+    <motion.div 
+      className="h-[110px] relative shrink-0 w-[158px] cursor-pointer" 
+      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
+      onClick={onThumbnailClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
         <Component663Thumb2MinJpg />
       </div>
-      <div aria-hidden="true" className="absolute border-2 border-[#ff5800] border-solid inset-0 pointer-events-none" />
-    </div>
+      <motion.div 
+        aria-hidden="true" 
+        className="absolute border-2 border-solid inset-0 pointer-events-none border-[#ff5800]"
+        animate={{
+          borderWidth: isSelected ? 3 : 2,
+          opacity: isSelected ? 1 : 0.7
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }
 
@@ -301,11 +318,27 @@ function Component663Thumb3MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer1() {
+function RsLayerWrapRsMaskWrapRsLayer1({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
   return (
-    <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+    <motion.div 
+      className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative shrink-0 w-[158px] cursor-pointer" 
+      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
+      onClick={onThumbnailClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       <Component663Thumb3MinJpg />
-    </div>
+      <motion.div 
+        aria-hidden="true" 
+        className="absolute border-2 border-solid inset-0 pointer-events-none border-[#ff5800]"
+        animate={{
+          borderWidth: isSelected ? 3 : 2,
+          opacity: isSelected ? 1 : 0.7
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }
 
@@ -317,20 +350,36 @@ function Component663Thumb1MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer2() {
+function RsLayerWrapRsMaskWrapRsLayer2({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
   return (
-    <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+    <motion.div 
+      className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative shrink-0 w-[158px] cursor-pointer" 
+      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
+      onClick={onThumbnailClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       <Component663Thumb1MinJpg />
-    </div>
+      <motion.div 
+        aria-hidden="true" 
+        className="absolute border-2 border-solid inset-0 pointer-events-none border-[#ff5800]"
+        animate={{
+          borderWidth: isSelected ? 3 : 2,
+          opacity: isSelected ? 1 : 0.7
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }
 
-function RsGroupWrapRsGroup() {
+function RsGroupWrapRsGroup({ onThumbnailClick, selectedIndex }: { onThumbnailClick: (index: number) => void, selectedIndex: number }) {
   return (
     <div className="content-stretch flex gap-[6px] items-center relative shrink-0" data-name="rs-group-wrap → rs-group">
-      <RsLayerWrapRsMaskWrapRsLayer />
-      <RsLayerWrapRsMaskWrapRsLayer1 />
-      <RsLayerWrapRsMaskWrapRsLayer2 />
+      <RsLayerWrapRsMaskWrapRsLayer onThumbnailClick={() => onThumbnailClick(0)} isSelected={selectedIndex === 0} />
+      <RsLayerWrapRsMaskWrapRsLayer1 onThumbnailClick={() => onThumbnailClick(1)} isSelected={selectedIndex === 1} />
+      <RsLayerWrapRsMaskWrapRsLayer2 onThumbnailClick={() => onThumbnailClick(2)} isSelected={selectedIndex === 2} />
     </div>
   );
 }
@@ -348,23 +397,48 @@ function RsLayerWrapRsLayer() {
   );
 }
 
-function Group2() {
+function Group2({ selectedImage }: { selectedImage: string }) {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
       <div className="[grid-area:1_/_1] bg-[#ff5800] h-[635px] ml-[78px] mt-0 w-[610px]" data-name="image 15" />
       <div className="[grid-area:1_/_1] h-[615.693px] ml-0 mt-[89.307px] relative w-[641px]" data-name="image 14">
-        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={img663Thumb2MinJpg} />
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={selectedImage}
+            alt=""
+            className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full"
+            src={selectedImage}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.4, 0.0, 0.2, 1],
+              opacity: { duration: 0.4 },
+              scale: { duration: 0.6 }
+            }}
+          />
+        </AnimatePresence>
       </div>
     </div>
   );
 }
 
 function Frame1321316022() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(1); // Commence avec la deuxième image
+
+  const images = [img663Thumb2MinJpg, img663Thumb3MinJpg, img663Thumb1MinJpg];
+
+  const handleThumbnailClick = (index: number) => {
+    if (index === selectedImageIndex) return; // Éviter les clics sur la même image
+    setSelectedImageIndex(index);
+  };
+
   return (
     <div className="absolute content-stretch flex gap-[67px] items-end left-0 top-0">
-      <RsGroupWrapRsGroup />
+      <RsGroupWrapRsGroup onThumbnailClick={handleThumbnailClick} selectedIndex={selectedImageIndex} />
       <RsLayerWrapRsLayer />
-      <Group2 />
+      <Group2 selectedImage={images[selectedImageIndex]} />
     </div>
   );
 }
@@ -372,7 +446,7 @@ function Frame1321316022() {
 function Container8() {
   return (
     <div className="box-border content-stretch flex flex-col h-[92px] items-start mb-[-6px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#242424] text-[72px] text-nowrap">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#242424] text-[72px] text-nowrap">
         <p className="leading-[100px] whitespace-pre">{`Célébrer `}</p>
       </div>
     </div>
@@ -382,7 +456,7 @@ function Container8() {
 function Container9() {
   return (
     <div className="box-border content-stretch flex flex-col h-[92px] items-start mb-[-6px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#242424] text-[72px] w-[641px]">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#242424] text-[72px] w-[641px]">
         <p className="leading-[100px]">La grandeur des</p>
       </div>
     </div>
@@ -392,7 +466,7 @@ function Container9() {
 function Container10() {
   return (
     <div className="box-border content-stretch flex flex-col h-[92px] items-start mb-[-6px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#242424] text-[72px] text-nowrap">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#242424] text-[72px] text-nowrap">
         <p className="leading-[100px] whitespace-pre">Civilisations Noires</p>
       </div>
     </div>
@@ -458,7 +532,7 @@ function Link1() {
     <div className="relative rounded-[4px] shrink-0" data-name="Link">
       <div className="box-border content-stretch flex gap-[8px] items-start overflow-clip px-[26px] py-[16px] relative rounded-[inherit]">
         <Container12 />
-        <div className="flex flex-col font-['Jost:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#2f2f2f] text-[0px] text-center text-nowrap">
+        <div className="flex flex-col font-['Jost',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#2f2f2f] text-[0px] text-center text-nowrap">
           <p className="leading-[27px] text-[18px] whitespace-pre">Visiter le musée</p>
         </div>
       </div>
@@ -478,7 +552,7 @@ function Cta() {
 
 function Content() {
   return (
-    <div className="absolute box-border content-stretch flex flex-col gap-[8px] h-[705px] items-start left-[70px] px-0 py-[94px] top-0 w-full max-w-[1375px]" data-name="Content">
+    <div className="absolute box-border content-stretch flex flex-col gap-[8px] h-[705px] items-start left-[70px] px-0 py-[94px] top-0 w-full max-w-[1375px]" style={{backgroundColor: '#f3e8d5'}} data-name="Content">
       <Frame1321316022 />
       <Cta />
     </div>
@@ -487,7 +561,7 @@ function Content() {
 
 function HeroSection() {
   return (
-    <div className="h-[789px] bg-[#faf7f0] overflow-clip relative shrink-0 w-full" data-name="Hero section">
+    <div className="h-[789px] overflow-clip relative shrink-0 w-full z-50" style={{backgroundColor: '#f3e8d5'}} data-name="Hero section">
       <Content />
     </div>
   );
@@ -609,7 +683,7 @@ function Frame16() {
 function Frame1321316013() {
   return (
     <div className="content-stretch flex flex-col gap-[19px] items-start relative shrink-0 w-[654px]">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] min-w-full relative shrink-0 text-[56px] text-white w-[min-content]">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center leading-[0] min-w-full relative shrink-0 text-[56px] text-white w-[min-content]">
         <p className="leading-[70px]">Le Musée – L’âme du patrimoine</p>
       </div>
       <Frame16 />
@@ -683,14 +757,31 @@ function Container15() {
 }
 
 function Container16() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[339.97px] left-0 overflow-clip right-[1057.5px] top-[264.25px]" data-name="Container">
-      <div className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[339.97px] left-0 overflow-clip right-[1057.5px] top-[264.25px] cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage1} />
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.2px_9.25px_9.2px_9.24px] opacity-0" data-name="Background" />
       <Container15 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -712,14 +803,31 @@ function Container17() {
 }
 
 function Container18() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[339.95px] left-[352.5px] overflow-clip right-[705px] top-0" data-name="Container">
-      <div className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[339.95px] left-[352.5px] overflow-clip right-[705px] top-0 cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage2} />
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.2px_9.25px_9.2px_9.24px] opacity-0" data-name="Background" />
       <Container17 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -741,16 +849,33 @@ function Container19() {
 }
 
 function Container20() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[234.27px] left-[352.5px] overflow-clip right-[705px] top-[369.95px]" data-name="Container">
-      <div className="absolute inset-[-0.59px_-0.8px_-0.58px_-0.81px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[234.27px] left-[352.5px] overflow-clip right-[705px] top-[369.95px] cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.59px_-0.8px_-0.58px_-0.81px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <img alt="" className="absolute h-[244.73%] left-0 max-w-none top-[-34.23%] w-full" src={imgImage3} />
         </div>
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.46px_9.25px_9.47px_9.24px] opacity-0" data-name="Background" />
       <Container19 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -772,14 +897,31 @@ function Container21() {
 }
 
 function Container22() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-0" data-name="Container">
-      <div className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-0 cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage4} />
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.61px_9.49px_9.06px_9px] opacity-0" data-name="Background" />
       <Container21 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -801,14 +943,31 @@ function Container23() {
 }
 
 function Container24() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-[317.11px]" data-name="Container">
-      <div className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-[317.11px] cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage5} />
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.33px_9.25px_9.34px_9.24px] opacity-0" data-name="Background" />
       <Container23 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -830,14 +989,31 @@ function Container25() {
 }
 
 function Container26() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[392.81px] left-[1057.5px] overflow-clip right-0 top-0" data-name="Container">
-      <div className="absolute inset-[-0.99px_-0.8px_-0.98px_-0.81px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[392.81px] left-[1057.5px] overflow-clip right-0 top-0 cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.99px_-0.8px_-0.98px_-0.81px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage6} />
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.06px_9.25px_9.07px_9.24px] opacity-0" data-name="Background" />
       <Container25 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -859,14 +1035,31 @@ function Container27() {
 }
 
 function Container28() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="absolute h-[181.41px] left-[1057.5px] overflow-clip right-0 top-[422.81px]" data-name="Container">
-      <div className="absolute inset-[-0.2px_-1.11px_-0.69px_-0.5px]" data-name="Image">
+    <motion.div 
+      className="absolute h-[181.41px] left-[1057.5px] overflow-clip right-0 top-[422.81px] cursor-pointer" 
+      data-name="Container"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div 
+        className="absolute inset-[-0.2px_-1.11px_-0.69px_-0.5px]" 
+        data-name="Image"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage7} />
+        <div 
+          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
+            isHovered ? 'opacity-30' : 'opacity-0'
+          }`}
+          data-name="Background"
+        />
       </div>
-      <div className="absolute bg-[#040404] inset-[9.58px_9.25px_9.63px_9.24px] opacity-0" data-name="Background" />
       <Container27 />
-    </div>
+    </motion.div>
   );
 }
 
@@ -911,11 +1104,11 @@ function Container31() {
 
 function Frame1321316016() {
   return (
-    <div className="absolute content-stretch flex flex-col gap-[10px] items-center leading-[0] left-1/2 top-[78px] translate-x-[-50%] w-[715px]">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center min-w-full relative shrink-0 text-[#242424] text-[56px] w-[min-content]">
+    <div className="absolute content-stretch flex flex-col gap-[10px] items-center leading-[0] left-1/2 top-[78px] translate-x-[-50%] w-full">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center  relative shrink-0 text-[#242424] text-[56px]">
         <p className="leading-[normal]">Explorer les Oeuvres et Arts</p>
       </div>
-      <div className="flex flex-col font-['Jost:Regular',_sans-serif] font-normal justify-center relative shrink-0 text-[#5f5f5f] text-[18px] text-center w-[695px]">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-normal justify-center relative shrink-0 text-[#5f5f5f] text-[18px] text-center w-[695px]">
         <p className="leading-[normal]">En parcourant nos galeries, vous explorez l’âme de l’Afrique, son dialogue avec le monde, et la puissance symbolique de ses créations.</p>
       </div>
     </div>
@@ -959,7 +1152,7 @@ function Link2() {
     <div className="absolute left-1/2 rounded-[4px] top-[936px] translate-x-[-50%]" data-name="Link">
       <div className="box-border content-stretch flex gap-[8px] items-start overflow-clip px-[26px] py-[16px] relative rounded-[inherit]">
         <Container33 />
-        <div className="flex flex-col font-['Jost:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#2f2f2f] text-[0px] text-center text-nowrap">
+        <div className="flex flex-col font-['Jost',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#2f2f2f] text-[0px] text-center text-nowrap">
           <p className="leading-[27px] text-[18px] whitespace-pre">Voir Plus d’oeuvres</p>
         </div>
       </div>
@@ -1310,10 +1503,10 @@ function Frame() {
 function Frame1321316012() {
   return (
     <div className="absolute content-stretch flex flex-col gap-[20px] h-[198px] items-center leading-[0] left-[calc(50%+0.5px)] text-center text-white top-[91px] translate-x-[-50%] w-[948px]">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center relative shrink-0 text-[56px] text-nowrap">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center relative shrink-0 text-[56px] text-nowrap">
         <p className="leading-[72px] whitespace-pre">Plongez au cœur du musée</p>
       </div>
-      <div className="flex flex-col font-['Jost:Regular',_sans-serif] font-normal justify-center relative shrink-0 text-[18px] w-[695px]">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-normal justify-center relative shrink-0 text-[18px] w-[695px]">
         <p className="leading-[normal]">Découvrez le Musée des Civilisations Noires à travers une expérience virtuelle unique. Parcourez les galeries, admirez les œuvres, et laissez-vous guider par les récits qui font vibrer l’histoire du continent africain.</p>
       </div>
     </div>
@@ -2061,7 +2254,7 @@ function Container73() {
 function EvenementAVenir() {
   return (
     <div className="bg-[#f2e8d5] h-[769px] overflow-clip relative shrink-0 w-full" data-name="Evenement à venir">
-      <div className="absolute flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] left-[calc(50%-657.5px)] text-[#242424] text-[56px] text-nowrap top-[126.5px] translate-y-[-50%]">
+      <div className="absolute flex flex-col font-['Jost',_sans-serif] font-semibold justify-center leading-[0] left-[calc(50%-657.5px)] text-[#242424] text-[56px] text-nowrap top-[126.5px] translate-y-[-50%]">
         <p className="leading-[normal] whitespace-pre">Evènement à venir</p>
       </div>
       <Container68 />
@@ -2073,7 +2266,7 @@ function EvenementAVenir() {
 function Container74() {
   return (
     <div className="basis-0 content-stretch flex flex-col grow h-full items-start min-h-px min-w-px relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[56px] text-nowrap text-white">
+      <div className="flex flex-col font-['Jost',_sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[56px] text-nowrap text-white">
         <p className="leading-[normal] whitespace-pre">Articles récents</p>
       </div>
     </div>
@@ -2591,7 +2784,7 @@ function Frame5() {
 function Product() {
   return (
     <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0" data-name="Product">
-      <p className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Navigation</p>
+      <p className="font-['Jost',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Navigation</p>
       <Frame5 />
     </div>
   );
@@ -2618,7 +2811,7 @@ function Frame6() {
 function Explore() {
   return (
     <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0" data-name="Explore">
-      <p className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Contact</p>
+      <p className="font-['Jost',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Contact</p>
       <Frame6 />
     </div>
   );
@@ -2637,7 +2830,7 @@ function Frame4() {
 function Community() {
   return (
     <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0" data-name="Community">
-      <p className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Adresse</p>
+      <p className="font-['Jost',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Adresse</p>
       <Frame4 />
     </div>
   );
@@ -2662,7 +2855,7 @@ function Frame7() {
 function Company() {
   return (
     <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0" data-name="Company">
-      <p className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Horaires</p>
+      <p className="font-['Jost',_sans-serif] font-bold leading-[28px] relative shrink-0 text-[#101010] text-[18px] text-nowrap whitespace-pre">Horaires</p>
       <Frame7 />
     </div>
   );
@@ -2744,7 +2937,7 @@ function Frame18() {
       <div className="h-[221.247px] relative shrink-0 w-[199px]" data-name="image 13">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage13} />
       </div>
-      <p className="font-['Jost:Regular',_sans-serif] font-normal leading-[26px] relative shrink-0 text-[#101010] text-[16px] text-center text-nowrap whitespace-pre">© 2018 - 2025 Musée des Civilisations Noires. Tous droits réservés.</p>
+      <p className="font-['Jost',_sans-serif] font-normal leading-[26px] relative shrink-0 text-[#101010] text-[16px] text-center text-nowrap whitespace-pre">© 2018 - 2025 Musée des Civilisations Noires. Tous droits réservés.</p>
       <Socials />
     </div>
   );

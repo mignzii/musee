@@ -2580,6 +2580,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Police Jost globale */
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Appliquer Jost par défaut */
+body {
+  font-family: 'Jost', sans-serif;
+}
+
+/* Forcer Jost sur tous les éléments */
+*, *::before, *::after {
+  font-family: 'Jost', sans-serif !important;
+}
+
 @layer components {
   [data-name="Item → Link"]:hover {
     transition: all .2s;
@@ -2714,9 +2727,7 @@ html {
     transition: opacity .3s;
   }
 
-  [data-name="Collection et Evenement"] [data-name="Container"]:hover [data-name="Background"] {
-    opacity: .7 !important;
-  }
+  /* Règle supprimée pour permettre le contrôle individuel des overlays */
 
   @media (width <= 768px) {
     [data-name="Collection et Evenement"] [data-name="Container"] {

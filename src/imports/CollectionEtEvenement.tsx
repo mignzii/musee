@@ -286,7 +286,7 @@ function Container18() {
 function Frame1321316016() {
   return (
     <div className="absolute content-stretch flex flex-col gap-[10px] items-center leading-[0] left-1/2 top-[78px] translate-x-[-50%] w-[715px]">
-      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center min-w-full relative shrink-0 text-[#242424] text-[56px] w-[min-content]">
+      <div className="flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center min-w-full relative shrink-0 text-[#242424] text-[56px] ">
         <p className="leading-[normal]">Explorer les Oeuvres et Arts</p>
       </div>
       <div className="flex flex-col font-['Jost:Regular',_sans-serif] font-normal justify-center relative shrink-0 text-[#5f5f5f] text-[18px] text-center w-[695px]">
