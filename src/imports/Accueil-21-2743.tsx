@@ -478,7 +478,7 @@ function Cta() {
 
 function Content() {
   return (
-    <div className="absolute box-border content-stretch flex flex-col gap-[8px] h-[705px] items-start left-[70px] px-0 py-[94px] top-0 w-[1375px]" data-name="Content">
+    <div className="absolute box-border content-stretch flex flex-col gap-[8px] h-[705px] items-start left-[70px] px-0 py-[94px] top-0 w-full max-w-[1375px]" data-name="Content">
       <Frame1321316022 />
       <Cta />
     </div>
@@ -1239,7 +1239,7 @@ function Details14() {
 
 function Frame3() {
   return (
-    <div className="absolute bg-[#2f2f2f] h-[450px] left-[calc(50%+1px)] overflow-x-auto overflow-y-clip top-[278px] translate-x-[-50%] w-[1307px]">
+    <div className="absolute bg-[#2f2f2f] h-[450px] left-[calc(50%+1px)] overflow-x-auto overflow-y-clip top-[278px] translate-x-[-50%] w-full max-w-[1307px]">
       <div className="absolute h-[450px] left-[1345px] top-0 w-[435px]">
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
           <img alt="" className="absolute max-w-none object-50%-50% object-cover size-full" src={imgRectangle394} />
@@ -1293,12 +1293,12 @@ function Frame() {
   return (
     <div className="absolute contents left-[calc(50%+0.5px)] top-[223px] translate-x-[-50%]" data-name="Frame">
       <Frame3 />
-      <div className="absolute h-[123px] left-[calc(50%-7.5px)] top-[223px] translate-x-[-50%] w-[1358px]">
+      <div className="absolute h-[123px] left-[calc(50%-7.5px)] top-[223px] translate-x-[-50%] w-full max-w-[1358px]">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1358 123">
           <ellipse cx="679" cy="61.5" fill="var(--fill-0, #242424)" id="Ellipse 1" rx="679" ry="61.5" />
         </svg>
       </div>
-      <div className="absolute h-[123px] left-[calc(50%+8.5px)] top-[666px] translate-x-[-50%] w-[1358px]">
+      <div className="absolute h-[123px] left-[calc(50%+8.5px)] top-[666px] translate-x-[-50%] w-full max-w-[1358px]">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1358 123">
           <ellipse cx="679" cy="61.5" fill="var(--fill-0, #242424)" id="Ellipse 1" rx="679" ry="61.5" />
         </svg>
@@ -2181,7 +2181,7 @@ function Container80() {
 
 function Section2() {
   return (
-    <div className="absolute bottom-[651.85px] content-stretch flex flex-col items-start left-1/2 top-[75px] translate-x-[-50%] w-[1290px]" data-name="Section">
+    <div className="absolute bottom-[651.85px] content-stretch flex flex-col items-start left-1/2 top-[75px] translate-x-[-50%] w-full max-w-[1290px]" data-name="Section">
       <Container80 />
     </div>
   );
@@ -2531,7 +2531,7 @@ function Container102() {
 
 function Container103() {
   return (
-    <div className="absolute content-stretch flex items-start justify-between left-[calc(50%+1px)] top-[226px] translate-x-[-50%] w-[1318px]" data-name="Container">
+    <div className="absolute content-stretch flex items-start justify-between left-[calc(50%+1px)] top-[226px] translate-x-[-50%] w-full max-w-[1318px]" data-name="Container">
       <Container88 />
       <Container95 />
       <Container102 />
@@ -2551,7 +2551,7 @@ function Container104() {
 
 function Container105() {
   return (
-    <div className="absolute content-stretch flex items-start justify-center left-[60px] max-w-[1320px] right-[61px] top-0" data-name="Container">
+    <div className="absolute content-stretch flex items-start justify-center left-[60px] max-w-[1320px] right-[61px] top-0 w-full" data-name="Container">
       <Container104 />
     </div>
   );
@@ -2761,7 +2761,7 @@ function Frame19() {
 
 function Footer() {
   return (
-    <div className="absolute bg-[#faf7f0] box-border content-stretch flex flex-col gap-[10px] items-center justify-center left-[calc(50%+0.5px)] px-[60px] py-[65px] top-1/2 translate-x-[-50%] translate-y-[-50%] w-[1440px]" data-name="Footer">
+    <div className="absolute bg-[#faf7f0] box-border content-stretch flex flex-col gap-[10px] items-center justify-center left-[calc(50%+0.5px)] px-[60px] py-[65px] top-1/2 translate-x-[-50%] translate-y-[-50%] w-full max-w-[1440px]" data-name="Footer">
       <Frame19 />
     </div>
   );
@@ -2777,7 +2777,7 @@ function Footer1() {
 
 function Container106() {
   return (
-    <div className="absolute content-stretch flex flex-col items-start left-0 top-0 w-[1441px]" data-name="Container">
+    <div className="absolute content-stretch flex flex-col items-start left-0 top-0 w-full max-w-[1441px]" data-name="Container">
       <Header />
       <HeroSection />
       <APropos />
