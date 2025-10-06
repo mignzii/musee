@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import svgPaths from "./svg-mt2y6mwl5o";
 import imgImage13 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
 import img663Thumb2MinJpg from "figma:asset/120d15f2cafe1da0fa66ab8e0ba849a41d1820c1.png";
@@ -283,13 +284,29 @@ function Component663Thumb2MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer() {
+function RsLayerWrapRsMaskWrapRsLayer({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
   return (
-    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+    <motion.div
+      className="h-[110px] relative shrink-0 w-[158px] cursor-pointer"
+      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
+      onClick={onThumbnailClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
         <Component663Thumb2MinJpg />
       </div>
-    </div>
+      <motion.div
+        aria-hidden="true"
+        className={`absolute border-2 border-solid inset-0 pointer-events-none ${
+          isSelected ? 'border-[#ff5800] border-[3px]' : 'border-[#ff5800] border-[2px]'
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isSelected ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }
 
@@ -301,13 +318,29 @@ function Component663Thumb3MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer1() {
+function RsLayerWrapRsMaskWrapRsLayer1({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
   return (
-    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+    <motion.div
+      className="h-[110px] relative shrink-0 w-[158px] cursor-pointer"
+      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
+      onClick={onThumbnailClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
         <Component663Thumb3MinJpg />
       </div>
-    </div>
+      <motion.div
+        aria-hidden="true"
+        className={`absolute border-2 border-solid inset-0 pointer-events-none ${
+          isSelected ? 'border-[#ff5800] border-[3px]' : 'border-[#ff5800] border-[2px]'
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isSelected ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }
 
@@ -319,22 +352,38 @@ function Component663Thumb1MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer2() {
+function RsLayerWrapRsMaskWrapRsLayer2({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
   return (
-    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+    <motion.div
+      className="h-[110px] relative shrink-0 w-[158px] cursor-pointer"
+      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
+      onClick={onThumbnailClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
         <Component663Thumb1MinJpg />
       </div>
-    </div>
+      <motion.div
+        aria-hidden="true"
+        className={`absolute border-2 border-solid inset-0 pointer-events-none ${
+          isSelected ? 'border-[#ff5800] border-[3px]' : 'border-[#ff5800] border-[2px]'
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isSelected ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }
 
-function RsGroupWrapRsGroup() {
+function RsGroupWrapRsGroup({ onThumbnailClick, selectedIndex }: { onThumbnailClick: (index: number) => void, selectedIndex: number }) {
   return (
     <div className="content-stretch flex gap-[6px] items-center relative shrink-0" data-name="rs-group-wrap → rs-group">
-      <RsLayerWrapRsMaskWrapRsLayer />
-      <RsLayerWrapRsMaskWrapRsLayer1 />
-      <RsLayerWrapRsMaskWrapRsLayer2 />
+      <RsLayerWrapRsMaskWrapRsLayer onThumbnailClick={() => onThumbnailClick(0)} isSelected={selectedIndex === 0} />
+      <RsLayerWrapRsMaskWrapRsLayer1 onThumbnailClick={() => onThumbnailClick(1)} isSelected={selectedIndex === 1} />
+      <RsLayerWrapRsMaskWrapRsLayer2 onThumbnailClick={() => onThumbnailClick(2)} isSelected={selectedIndex === 2} />
     </div>
   );
 }
@@ -352,23 +401,46 @@ function RsLayerWrapRsLayer() {
   );
 }
 
-function Group2() {
+function Group2({ selectedImage }: { selectedImage: string }) {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
       <div className="[grid-area:1_/_1] bg-[#ff5800] h-[635px] ml-[78px] mt-0 w-[610px]" data-name="image 15" />
       <div className="[grid-area:1_/_1] h-[615.693px] ml-0 mt-[89.307px] relative w-[641px]" data-name="image 14">
-        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={img663Thumb3MinJpg} />
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={selectedImage}
+            alt=""
+            className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full"
+            src={selectedImage}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.4, 0.0, 0.2, 1],
+              opacity: { duration: 0.4 },
+              scale: { duration: 0.6 }
+            }}
+          />
+        </AnimatePresence>
       </div>
     </div>
   );
 }
 
 function Frame1321316022() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(1); // Commence avec la deuxième image
+  const images = [img663Thumb2MinJpg, img663Thumb3MinJpg, img663Thumb1MinJpg];
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
   return (
     <div className="absolute content-stretch flex gap-[67px] items-end left-0 top-0">
-      <RsGroupWrapRsGroup />
+      <RsGroupWrapRsGroup onThumbnailClick={handleThumbnailClick} selectedIndex={selectedImageIndex} />
       <RsLayerWrapRsLayer />
-      <Group2 />
+      <Group2 selectedImage={images[selectedImageIndex]} />
     </div>
   );
 }
