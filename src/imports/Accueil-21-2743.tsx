@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
 import svgPaths from "./svg-mt2y6mwl5o";
 import imgImage13 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
 import img663Thumb2MinJpg from "figma:asset/120d15f2cafe1da0fa66ab8e0ba849a41d1820c1.png";
@@ -284,29 +283,13 @@ function Component663Thumb2MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
+function RsLayerWrapRsMaskWrapRsLayer() {
   return (
-    <motion.div 
-      className="h-[110px] relative shrink-0 w-[158px] cursor-pointer" 
-      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
-      onClick={onThumbnailClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-    >
+    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
       <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
         <Component663Thumb2MinJpg />
       </div>
-      <motion.div 
-        aria-hidden="true" 
-        className="absolute border-2 border-solid inset-0 pointer-events-none border-[#ff5800]"
-        animate={{
-          borderWidth: isSelected ? 3 : 2,
-          opacity: isSelected ? 1 : 0.7
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-    </motion.div>
+    </div>
   );
 }
 
@@ -318,27 +301,13 @@ function Component663Thumb3MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer1({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
+function RsLayerWrapRsMaskWrapRsLayer1() {
   return (
-    <motion.div 
-      className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative shrink-0 w-[158px] cursor-pointer" 
-      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
-      onClick={onThumbnailClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-    >
-      <Component663Thumb3MinJpg />
-      <motion.div 
-        aria-hidden="true" 
-        className="absolute border-2 border-solid inset-0 pointer-events-none border-[#ff5800]"
-        animate={{
-          borderWidth: isSelected ? 3 : 2,
-          opacity: isSelected ? 1 : 0.7
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-    </motion.div>
+    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+      <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
+        <Component663Thumb3MinJpg />
+      </div>
+    </div>
   );
 }
 
@@ -350,36 +319,22 @@ function Component663Thumb1MinJpg() {
   );
 }
 
-function RsLayerWrapRsMaskWrapRsLayer2({ onThumbnailClick, isSelected }: { onThumbnailClick: () => void, isSelected: boolean }) {
+function RsLayerWrapRsMaskWrapRsLayer2() {
   return (
-    <motion.div 
-      className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative shrink-0 w-[158px] cursor-pointer" 
-      data-name="rs-layer-wrap → rs-mask-wrap → rs-layer"
-      onClick={onThumbnailClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-    >
-      <Component663Thumb1MinJpg />
-      <motion.div 
-        aria-hidden="true" 
-        className="absolute border-2 border-solid inset-0 pointer-events-none border-[#ff5800]"
-        animate={{
-          borderWidth: isSelected ? 3 : 2,
-          opacity: isSelected ? 1 : 0.7
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-    </motion.div>
+    <div className="h-[110px] relative shrink-0 w-[158px]" data-name="rs-layer-wrap → rs-mask-wrap → rs-layer">
+      <div className="box-border content-stretch flex flex-col h-[110px] items-start justify-center overflow-clip p-[2px] relative rounded-[inherit] w-[158px]">
+        <Component663Thumb1MinJpg />
+      </div>
+    </div>
   );
 }
 
-function RsGroupWrapRsGroup({ onThumbnailClick, selectedIndex }: { onThumbnailClick: (index: number) => void, selectedIndex: number }) {
+function RsGroupWrapRsGroup() {
   return (
     <div className="content-stretch flex gap-[6px] items-center relative shrink-0" data-name="rs-group-wrap → rs-group">
-      <RsLayerWrapRsMaskWrapRsLayer onThumbnailClick={() => onThumbnailClick(0)} isSelected={selectedIndex === 0} />
-      <RsLayerWrapRsMaskWrapRsLayer1 onThumbnailClick={() => onThumbnailClick(1)} isSelected={selectedIndex === 1} />
-      <RsLayerWrapRsMaskWrapRsLayer2 onThumbnailClick={() => onThumbnailClick(2)} isSelected={selectedIndex === 2} />
+      <RsLayerWrapRsMaskWrapRsLayer />
+      <RsLayerWrapRsMaskWrapRsLayer1 />
+      <RsLayerWrapRsMaskWrapRsLayer2 />
     </div>
   );
 }
@@ -397,48 +352,23 @@ function RsLayerWrapRsLayer() {
   );
 }
 
-function Group2({ selectedImage }: { selectedImage: string }) {
+function Group2() {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
       <div className="[grid-area:1_/_1] bg-[#ff5800] h-[635px] ml-[78px] mt-0 w-[610px]" data-name="image 15" />
       <div className="[grid-area:1_/_1] h-[615.693px] ml-0 mt-[89.307px] relative w-[641px]" data-name="image 14">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={selectedImage}
-            alt=""
-            className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full"
-            src={selectedImage}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{
-              duration: 0.6,
-              ease: [0.4, 0.0, 0.2, 1],
-              opacity: { duration: 0.4 },
-              scale: { duration: 0.6 }
-            }}
-          />
-        </AnimatePresence>
+        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={img663Thumb3MinJpg} />
       </div>
     </div>
   );
 }
 
 function Frame1321316022() {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(1); // Commence avec la deuxième image
-
-  const images = [img663Thumb2MinJpg, img663Thumb3MinJpg, img663Thumb1MinJpg];
-
-  const handleThumbnailClick = (index: number) => {
-    if (index === selectedImageIndex) return; // Éviter les clics sur la même image
-    setSelectedImageIndex(index);
-  };
-
   return (
     <div className="absolute content-stretch flex gap-[67px] items-end left-0 top-0">
-      <RsGroupWrapRsGroup onThumbnailClick={handleThumbnailClick} selectedIndex={selectedImageIndex} />
+      <RsGroupWrapRsGroup />
       <RsLayerWrapRsLayer />
-      <Group2 selectedImage={images[selectedImageIndex]} />
+      <Group2 />
     </div>
   );
 }
@@ -757,31 +687,14 @@ function Container15() {
 }
 
 function Container16() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[339.97px] left-0 overflow-clip right-[1057.5px] top-[264.25px] cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[339.97px] left-0 overflow-clip right-[1057.5px] top-[264.25px]" data-name="Container">
+      <div className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage1} />
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.2px_9.25px_9.2px_9.24px]" data-name="Background" />
       </div>
       <Container15 />
-    </motion.div>
+    </div>
   );
 }
 
@@ -803,31 +716,14 @@ function Container17() {
 }
 
 function Container18() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[339.95px] left-[352.5px] overflow-clip right-[705px] top-0 cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[339.95px] left-[352.5px] overflow-clip right-[705px] top-0" data-name="Container">
+      <div className="absolute inset-[-0.85px_-0.8px_-0.85px_-0.81px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage2} />
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.06px_9.25px_9.07px_9.24px]" data-name="Background" />
       </div>
       <Container17 />
-    </motion.div>
+    </div>
   );
 }
 
@@ -849,33 +745,16 @@ function Container19() {
 }
 
 function Container20() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[234.27px] left-[352.5px] overflow-clip right-[705px] top-[369.95px] cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.59px_-0.8px_-0.58px_-0.81px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[234.27px] left-[352.5px] overflow-clip right-[705px] top-[369.95px]" data-name="Container">
+      <div className="absolute inset-[-0.59px_-0.8px_-0.58px_-0.81px]" data-name="Image">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <img alt="" className="absolute h-[244.73%] left-0 max-w-none top-[-34.23%] w-full" src={imgImage3} />
         </div>
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.33px_9.25px_9.34px_9.24px]" data-name="Background" />
       </div>
       <Container19 />
-    </motion.div>
+    </div>
   );
 }
 
@@ -897,31 +776,14 @@ function Container21() {
 }
 
 function Container22() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-0 cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-0" data-name="Container">
+      <div className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage4} />
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.46px_9.25px_9.47px_9.24px]" data-name="Background" />
       </div>
       <Container21 />
-    </motion.div>
+    </div>
   );
 }
 
@@ -943,31 +805,14 @@ function Container23() {
 }
 
 function Container24() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-[317.11px] cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[287.11px] left-[705px] overflow-clip right-[352.5px] top-[317.11px]" data-name="Container">
+      <div className="absolute inset-[-0.72px_-0.8px_-0.71px_-0.81px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage5} />
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.58px_9.25px_9.63px_9.24px]" data-name="Background" />
       </div>
       <Container23 />
-    </motion.div>
+    </div>
   );
 }
 
@@ -989,31 +834,14 @@ function Container25() {
 }
 
 function Container26() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[392.81px] left-[1057.5px] overflow-clip right-0 top-0 cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.99px_-0.8px_-0.98px_-0.81px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[392.81px] left-[1057.5px] overflow-clip right-0 top-0" data-name="Container">
+      <div className="absolute inset-[-0.99px_-0.8px_-0.98px_-0.81px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage6} />
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.61px_9.49px_9.06px_9px]" data-name="Background" />
       </div>
       <Container25 />
-    </motion.div>
+    </div>
   );
 }
 
@@ -1035,31 +863,14 @@ function Container27() {
 }
 
 function Container28() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.div 
-      className="absolute h-[181.41px] left-[1057.5px] overflow-clip right-0 top-[422.81px] cursor-pointer" 
-      data-name="Container"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div 
-        className="absolute inset-[-0.2px_-1.11px_-0.69px_-0.5px]" 
-        data-name="Image"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div className="absolute h-[181.41px] left-[1057.5px] overflow-clip right-0 top-[422.81px]" data-name="Container">
+      <div className="absolute inset-[-0.2px_-1.11px_-0.69px_-0.5px]" data-name="Image">
         <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage7} />
-        <div 
-          className={`absolute inset-0 bg-[#040404] transition-opacity duration-300 ease-out ${
-            isHovered ? 'opacity-30' : 'opacity-0'
-          }`}
-          data-name="Background"
-        />
+        <div className="absolute bg-[#040404] inset-[9.61px_9.49px_9.32px_9px]" data-name="Background" />
       </div>
       <Container27 />
-    </motion.div>
+    </div>
   );
 }
 

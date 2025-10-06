@@ -2727,7 +2727,10 @@ body {
     transition: opacity .3s;
   }
 
-  /* Règle supprimée pour permettre le contrôle individuel des overlays */
+  /* Effet de hover individuel pour chaque conteneur d'œuvre d'art */
+  [data-name="Collection et Evenement"] [data-name="Container"]:hover [data-name="Background"] {
+    opacity: 0.3 !important;
+  }
 
   @media (width <= 768px) {
     [data-name="Collection et Evenement"] [data-name="Container"] {
