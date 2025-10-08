@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import svgPaths from "./svg-9abyehwwpy";
 import imgImage13 from "../assets/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
@@ -492,13 +492,22 @@ function Frame1321316018() {
   );
 }
 
-function Play() {
+function Play({ isPlaying = false }: { isPlaying?: boolean }) {
   return (
     <div className="relative shrink-0 size-[22px]" data-name="play">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
         <g clipPath="url(#clip0_1_652)" id="play">
           <g id="Vector"></g>
-          <path d={svgPaths.p29d52280} fill="var(--fill-0, black)" id="Vector_2" />
+          {isPlaying ? (
+            // Icône pause (deux rectangles)
+            <>
+              <rect x="6" y="4" width="3" height="14" fill="var(--fill-0, black)" />
+              <rect x="13" y="4" width="3" height="14" fill="var(--fill-0, black)" />
+            </>
+          ) : (
+            // Icône play (triangle)
+            <path d={svgPaths.p29d52280} fill="var(--fill-0, black)" id="Vector_2" />
+          )}
         </g>
         <defs>
           <clipPath id="clip0_1_652">
@@ -510,16 +519,31 @@ function Play() {
   );
 }
 
-function Timeline() {
+function Timeline({ currentTime, duration, onSeek }: { currentTime: number; duration: number; onSeek: (e: React.ChangeEvent<HTMLInputElement>) => void }) {
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  
   return (
     <div className="basis-0 content-stretch flex grow items-start min-h-px min-w-px overflow-clip relative rounded-[200px] shrink-0" data-name="timeline">
       <div className="basis-0 bg-[#d9d9d9] grow h-[4px] min-h-px min-w-px shrink-0" data-name="all" />
-      <div className="absolute bg-[#595959] h-[4px] left-0 rounded-[200px] top-0 w-[41px]" data-name="current" />
+      <div 
+        className="absolute bg-[#595959] h-[4px] left-0 rounded-[200px] top-0 transition-all duration-100" 
+        data-name="current" 
+        style={{ width: `${progress}%` }}
+      />
+      <input
+        type="range"
+        min="0"
+        max={duration}
+        value={currentTime}
+        onChange={onSeek}
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        style={{ background: 'transparent' }}
+      />
     </div>
   );
 }
 
-function Volume() {
+function Volume({ volume, onVolumeChange }: { volume: number; onVolumeChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) {
   return (
     <div className="relative shrink-0 size-[22px]" data-name="volume">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
@@ -533,6 +557,16 @@ function Volume() {
           </clipPath>
         </defs>
       </svg>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        value={volume}
+        onChange={onVolumeChange}
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        style={{ background: 'transparent' }}
+      />
     </div>
   );
 }
@@ -583,14 +617,80 @@ function Langue() {
 }
 
 function ChromeDefaultAudioPlayer() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(83); // 1:23 en secondes
+  const [volume, setVolume] = useState(1);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+    }
+  };
+
   return (
     <div className="bg-[#f1f3f4] box-border content-stretch flex gap-[12px] items-center px-[14px] py-[15px] relative rounded-[200px] shrink-0 w-[477px]" data-name="Chrome_Default_Audio_Player">
-      <Play />
+      <audio
+        ref={audioRef}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={() => setIsPlaying(false)}
+        preload="metadata"
+      >
+        <source src="/audio/david.mp3" type="audio/mpeg" />
+        Votre navigateur ne supporte pas l'élément audio.
+      </audio>
+      
+      <button onClick={togglePlayPause} className="cursor-pointer">
+        <Play isPlaying={isPlaying} />
+      </button>
+      
       <p className="font-['Roboto:Regular',_sans-serif] font-normal leading-[normal] relative shrink-0 text-[14px] text-black text-nowrap whitespace-pre" style={{ fontVariationSettings: "'wdth' 100" }}>
-        0:00 / 1:23
+        {formatTime(currentTime)} / {formatTime(duration)}
       </p>
-      <Timeline />
-      <Volume />
+      
+      <Timeline currentTime={currentTime} duration={duration} onSeek={handleSeek} />
+      <Volume volume={volume} onVolumeChange={handleVolumeChange} />
       <Langue />
     </div>
   );
