@@ -1,25 +1,25 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import svgPaths from "./svg-9abyehwwpy";
-import imgImage13 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
-import imgRectangle12312 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
-import imgRectangle12313 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
-import imgRectangle12314 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
-import imgRectangle12316 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
-import imgRectangle12315 from "figma:asset/9cc6a0ff2579afcef533f970476404a89e9c297b.png";
-import imgImage from "figma:asset/fe4a4e60379d20a3b5897cca0da0e3537f659bc1.png";
-import imgImage1 from "figma:asset/43bcd3e5c97c014efe43d35a6c0c8046e7609de2.png";
-import imgImage2 from "figma:asset/73763b379d91dd9a53f08032ae1f043937aeb119.png";
-import imgImage3 from "figma:asset/72a9613a2919e89593b3204ed694441056c8869d.png";
-import imgImage4 from "figma:asset/88782c78e87edcc71d2c001124b46cfdd231c1ea.png";
-import imgImage5 from "figma:asset/4c468b5d5380c497014e19e70ef6ff8a6b7fce39.png";
-import imgImage6 from "figma:asset/2165d3b2e33dbeb9284b5de54e758abcb533788d.png";
-import imgImage7 from "figma:asset/44f650c7d3e920b38d2cf16bc73194485f6be9c7.png";
-import imgRectangle394 from "figma:asset/8a1f7503ffd68bc01b813781c9ca7e1699e85a2e.png";
-import imgRectangle396 from "figma:asset/d44bd07a0fd0a0ab9de3c456780a7b38d33524a5.png";
-import imgRectangle398 from "figma:asset/24fc70d68fb94de85be22b4b18adb0c22e4e78c4.png";
-import imgRectangle395 from "figma:asset/dd5b83737c63727a4df8f3905d262cb8d355f733.png";
-import imgRectangle397 from "figma:asset/90837034ff8c56ee9a701ced6e763659824fa733.png";
+import imgImage13 from "../assets/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
+import imgRectangle12312 from "../assets/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
+import imgRectangle12313 from "../assets/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
+import imgRectangle12314 from "../assets/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
+import imgRectangle12316 from "../assets/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
+import imgRectangle12315 from "../assets/9cc6a0ff2579afcef533f970476404a89e9c297b.png";
+import imgImage from "../assets/fe4a4e60379d20a3b5897cca0da0e3537f659bc1.png";
+import imgImage1 from "../assets/43bcd3e5c97c014efe43d35a6c0c8046e7609de2.png";
+import imgImage2 from "../assets/73763b379d91dd9a53f08032ae1f043937aeb119.png";
+import imgImage3 from "../assets/72a9613a2919e89593b3204ed694441056c8869d.png";
+import imgImage4 from "../assets/88782c78e87edcc71d2c001124b46cfdd231c1ea.png";
+import imgImage5 from "../assets/4c468b5d5380c497014e19e70ef6ff8a6b7fce39.png";
+import imgImage6 from "../assets/2165d3b2e33dbeb9284b5de54e758abcb533788d.png";
+import imgImage7 from "../assets/44f650c7d3e920b38d2cf16bc73194485f6be9c7.png";
+import imgRectangle394 from "../assets/8a1f7503ffd68bc01b813781c9ca7e1699e85a2e.png";
+import imgRectangle396 from "../assets/d44bd07a0fd0a0ab9de3c456780a7b38d33524a5.png";
+import imgRectangle398 from "../assets/24fc70d68fb94de85be22b4b18adb0c22e4e78c4.png";
+import imgRectangle395 from "../assets/dd5b83737c63727a4df8f3905d262cb8d355f733.png";
+import imgRectangle397 from "../assets/90837034ff8c56ee9a701ced6e763659824fa733.png";
 
 function Margin() {
   return (
@@ -355,34 +355,45 @@ function Frame26085660() {
   );
 }
 
-function Frame26085659() {
+function Frame26085659({ selectedImageIndex, onThumbnailClick }: { selectedImageIndex: number; onThumbnailClick: (index: number) => void }) {
+  const thumbnails = [
+    { src: imgImage1, alt: "Masque Bamiléké - Vue 1" },
+    { src: imgImage2, alt: "Masque Bamiléké - Vue 2" },
+    { src: imgImage3, alt: "Masque Bamiléké - Vue 3" },
+    { src: imgImage4, alt: "Masque Bamiléké - Vue 4" },
+    { src: imgRectangle12315, alt: "Masque Bamiléké - Vue 5" },
+    { src: imgImage5, alt: "Masque Bamiléké - Vue 6" }
+  ];
+
   return (
     <div className="content-stretch flex flex-col h-full items-start justify-between relative shrink-0">
-      <div className="h-[78px] relative shrink-0 w-[80px]">
-        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgRectangle12312} />
-      </div>
-      <div className="h-[78px] relative shrink-0 w-[80px]">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[246.15%] left-[2.75%] max-w-none top-[-117.25%] w-[135%]" src={imgRectangle12313} />
-        </div>
-      </div>
-      <div className="h-[78px] relative shrink-0 w-[80px]">
-        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgRectangle12314} />
-      </div>
-      <div className="h-[78px] relative shrink-0 w-[80px]">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[221.08%] left-[-12.83%] max-w-none top-[-35.16%] w-[121.25%]" src={imgRectangle12316} />
-        </div>
-      </div>
-      <div className="h-[78px] pointer-events-none relative shrink-0 w-[80px]">
-        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover size-full" src={imgRectangle12315} />
-        <div aria-hidden="true" className="absolute border-2 border-[#ff5800] border-solid inset-0" />
-      </div>
-      <div className="h-[85.75px] relative shrink-0 w-[80px]">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[246.15%] left-[-34.82%] max-w-none top-[-117.25%] w-[135%]" src={imgRectangle12313} />
-        </div>
-      </div>
+      {thumbnails.map((thumbnail, index) => (
+        <motion.div
+          key={index}
+          className="h-[78px] relative shrink-0 w-[80px] cursor-pointer"
+          onClick={() => onThumbnailClick(index)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+        >
+          <motion.img
+            alt={thumbnail.alt}
+            className="absolute inset-0 max-w-none object-50%-50% object-cover size-full pointer-events-auto"
+            src={thumbnail.src}
+            initial={{ opacity: 0.7 }}
+            animate={{ opacity: index === selectedImageIndex ? 1 : 0.7 }}
+            transition={{ duration: 0.3 }}
+          />
+          {index === selectedImageIndex && (
+            <motion.div
+              className="absolute border-2 border-[#ff5800] border-solid inset-0"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            />
+          )}
+        </motion.div>
+      ))}
       <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*1)+(var(--transform-inner-height)*0)))] items-center justify-center left-0 top-[573px] w-[calc(1px*((var(--transform-inner-height)*1)+(var(--transform-inner-width)*0)))]" style={{ "--transform-inner-width": "32", "--transform-inner-height": "80" } as React.CSSProperties}>
         <div className="flex-none rotate-[270deg]">
           {[...Array(2).keys()].map((_, i) => (
@@ -397,23 +408,54 @@ function Frame26085659() {
   );
 }
 
-function Frame26085658() {
+function Frame26085658({ selectedImageIndex }: { selectedImageIndex: number }) {
+  const images = [
+    { src: imgImage1, alt: "Masque Bamiléké - Vue principale 1" },
+    { src: imgImage2, alt: "Masque Bamiléké - Vue principale 2" },
+    { src: imgImage3, alt: "Masque Bamiléké - Vue principale 3" },
+    { src: imgImage4, alt: "Masque Bamiléké - Vue principale 4" },
+    { src: imgRectangle12315, alt: "Masque Bamiléké - Vue principale 5" },
+    { src: imgImage5, alt: "Masque Bamiléké - Vue principale 6" }
+  ];
+
   return (
-    <div className="h-[605px] relative shrink-0 w-[648px]">
-      <div className="absolute h-[605px] left-0 top-0 w-[648px]">
-        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgRectangle12315} />
-      </div>
+    <div className="h-[605px] relative shrink-0 w-[648px] overflow-hidden rounded-lg">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedImageIndex}
+          className="absolute h-[605px] left-0 top-0 w-[648px]"
+          initial={{ opacity: 0, scale: 1.1, rotateY: 15 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+          exit={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+          transition={{ 
+            duration: 0.6, 
+            ease: [0.4, 0.0, 0.2, 1],
+            type: "spring",
+            stiffness: 100,
+            damping: 15
+          }}
+        >
+          <motion.img
+            alt={images[selectedImageIndex].alt}
+            className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full"
+            src={images[selectedImageIndex].src}
+            initial={{ filter: "blur(10px)" }}
+            animate={{ filter: "blur(0px)" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          />
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
 
-function Image() {
+function Image({ selectedImageIndex, onThumbnailClick }: { selectedImageIndex: number; onThumbnailClick: (index: number) => void }) {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0" data-name="Image">
       <div className="flex flex-row items-center self-stretch">
-        <Frame26085659 />
+        <Frame26085659 selectedImageIndex={selectedImageIndex} onThumbnailClick={onThumbnailClick} />
       </div>
-      <Frame26085658 />
+      <Frame26085658 selectedImageIndex={selectedImageIndex} />
     </div>
   );
 }
@@ -563,19 +605,26 @@ function Frame1321316019() {
   );
 }
 
-function Component1() {
+function Component1({ selectedImageIndex, onThumbnailClick }: { selectedImageIndex: number; onThumbnailClick: (index: number) => void }) {
   return (
     <div className="absolute content-stretch flex gap-[36px] items-center left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-[1320px]" data-name="Component 1">
-      <Image />
+      <Image selectedImageIndex={selectedImageIndex} onThumbnailClick={onThumbnailClick} />
       <Frame1321316019 />
     </div>
   );
 }
 
 function Information() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(4); // Commencer avec l'image 5 (index 4)
+
+  const handleThumbnailClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+
   return (
     <div className="bg-[#f2e8d5] h-[689px] overflow-clip relative shrink-0 w-full" data-name="Information">
-      <Component1 />
+      <Component1 selectedImageIndex={selectedImageIndex} onThumbnailClick={handleThumbnailClick} />
     </div>
   );
 }
@@ -1391,7 +1440,7 @@ function Socials() {
       <Component004VimeoSocialLogo />
       <div className="h-[16.151px] relative shrink-0 w-[15.565px]" data-name="Combined Shape">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 17">
-          <path d={svgPaths.p2cea8900} fill="var(--fill-0, #101010)" id="Combined Shape" />
+          <path d={svgPaths.pd4f8700} fill="var(--fill-0, #101010)" id="Combined Shape" />
         </svg>
       </div>
     </div>
