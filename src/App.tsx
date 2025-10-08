@@ -26,7 +26,7 @@ export default function App() {
           onNavigateToVirtualTour={navigateToVirtualTour}
         />
       ) : currentPage === 'collection' ? (
-        <ExplorerOeuvreCollection onNavigateToHome={navigateToHome} />
+        <ExplorerOeuvreCollection onNavigateToHome={navigateToHome} onNavigateToVirtualTour={navigateToVirtualTour} />
       ) : (
         <CompleteImmersiveTour onNavigateToHome={navigateToHome} />
       )}

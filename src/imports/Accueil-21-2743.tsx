@@ -1067,10 +1067,19 @@ function CollectionEtEvenement() {
 }
 
 function Details() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[1836px] not-italic text-white top-[283px]" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[1836px] not-italic text-white top-[283px] cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[32px] text-nowrap">
-        <p className="leading-[normal] whitespace-pre">{`Galerie de l’art `}</p>
+        <p className="leading-[normal] whitespace-pre">{`Galerie de l'art `}</p>
       </div>
       <div className="flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center relative shrink-0 text-[16px] w-[361px]">
         <p className="leading-[24px]">{`VISITE VIRTUELLE ->`}</p>
@@ -1112,10 +1121,19 @@ function Details2() {
 }
 
 function Details3() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0 cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[40px] text-nowrap">
-        <p className="leading-[normal] whitespace-pre">{`Galerie de l’art `}</p>
+        <p className="leading-[normal] whitespace-pre">{`Galerie de l'art `}</p>
       </div>
       <div className="flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center relative shrink-0 text-[16px] w-[361px]">
         <p className="leading-[24px]">{`VISITE VIRTUELLE ->`}</p>
@@ -1135,8 +1153,17 @@ function Text() {
 }
 
 function Details4() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[2305px] not-italic text-white top-[283px]" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[2305px] not-italic text-white top-[283px] cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[32px] text-nowrap">
         <p className="leading-[normal] whitespace-pre">Galerie des religions</p>
       </div>
@@ -1180,10 +1207,19 @@ function Details6() {
 }
 
 function Details7() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0 cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[32px] w-[353px]">
-        <p className="leading-[normal]">Afrique, berceau de l’humanité</p>
+        <p className="leading-[normal]">Afrique, berceau de l'humanité</p>
       </div>
       <div className="flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center relative shrink-0 text-[16px] w-[361px]">
         <p className="leading-[24px]">{`VISITE VIRTUELLE ->`}</p>
@@ -1235,8 +1271,17 @@ function Details9() {
 }
 
 function Details10() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0 cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[32px] w-[353px]">
         <p className="leading-[normal]">portraits historiques</p>
       </div>
@@ -1290,8 +1335,17 @@ function Details12() {
 }
 
 function Details13() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-0 not-italic text-white top-0 cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[32px] w-[353px]">
         <p className="leading-[normal]">femmes africaines marquantes</p>
       </div>
@@ -1313,8 +1367,17 @@ function Text3() {
 }
 
 function Details14() {
+  const handleClick = () => {
+    // Navigation vers la visite virtuelle via événement personnalisé
+    window.dispatchEvent(new CustomEvent('navigateToVirtualTour'));
+  };
+
   return (
-    <div className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[1382px] not-italic text-white top-[283px]" data-name="details">
+    <div 
+      className="absolute content-stretch flex flex-col gap-[16px] items-start leading-[0] left-[1382px] not-italic text-white top-[283px] cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="details"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Bebas_Neue:Regular',_sans-serif] justify-center relative shrink-0 text-[32px] text-nowrap">
         <p className="leading-[normal] whitespace-pre">Galerie des masques et des rituels</p>
       </div>
@@ -2879,6 +2942,20 @@ function Container106({ onNavigateToCollection, onNavigateToVirtualTour }: { onN
 }
 
 export default function Accueil({ onNavigateToCollection, onNavigateToVirtualTour }: { onNavigateToCollection: () => void; onNavigateToVirtualTour?: () => void }) {
+  React.useEffect(() => {
+    const handleNavigateToVirtualTour = () => {
+      if (onNavigateToVirtualTour) {
+        onNavigateToVirtualTour();
+      }
+    };
+
+    window.addEventListener('navigateToVirtualTour', handleNavigateToVirtualTour);
+    
+    return () => {
+      window.removeEventListener('navigateToVirtualTour', handleNavigateToVirtualTour);
+    };
+  }, [onNavigateToVirtualTour]);
+
   return (
     <div className="bg-[#f2e8d5] relative size-full" data-name="Accueil">
       <Container106 onNavigateToCollection={onNavigateToCollection} onNavigateToVirtualTour={onNavigateToVirtualTour} />

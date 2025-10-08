@@ -60,9 +60,19 @@ function ItemLink1() {
   );
 }
 
-function ItemLink2() {
+function ItemLink2({ onNavigateToVirtualTour }: { onNavigateToVirtualTour?: () => void }) {
+  const handleClick = () => {
+    if (onNavigateToVirtualTour) {
+      onNavigateToVirtualTour();
+    }
+  };
+
   return (
-    <div className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[3]" data-name="Item → Link">
+    <div 
+      className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[3] cursor-pointer hover:opacity-80 transition-opacity" 
+      data-name="Item → Link"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Inter:Medium',_sans-serif] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#242424] text-[19px] text-nowrap tracking-[0.2px]">
         <p className="leading-[28.5px] whitespace-pre">Visite Virtuelle</p>
       </div>
@@ -90,24 +100,24 @@ function ItemLink4() {
   );
 }
 
-function NavList({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function NavList({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="content-stretch flex isolate items-start relative shrink-0" data-name="Nav → List">
       <ItemLink onNavigateToHome={onNavigateToHome} />
       <ItemLink1 />
-      <ItemLink2 />
+      <ItemLink2 onNavigateToVirtualTour={onNavigateToVirtualTour} />
       <ItemLink3 />
       <ItemLink4 />
     </div>
   );
 }
 
-function Margin1({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function Margin1({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="basis-0 grow max-w-[1085.81px] min-h-px min-w-px relative shrink-0" data-name="Margin">
       <div className="max-w-inherit size-full">
         <div className="box-border content-stretch flex flex-col items-start max-w-inherit pb-[8px] pl-0 pr-[24px] pt-[12px] relative w-full">
-          <NavList onNavigateToHome={onNavigateToHome} />
+          <NavList onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
         </div>
       </div>
     </div>
@@ -205,13 +215,13 @@ function Margin3() {
   );
 }
 
-function Container4({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function Container4({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0" data-name="Container">
       <div className="flex flex-row items-center size-full">
         <div className="box-border content-center flex flex-wrap gap-0 items-center px-[15px] py-0 relative size-full">
           <Margin />
-          <Margin1 onNavigateToHome={onNavigateToHome} />
+          <Margin1 onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
           <Margin2 />
           <Margin3 />
         </div>
@@ -220,10 +230,10 @@ function Container4({ onNavigateToHome }: { onNavigateToHome: () => void }) {
   );
 }
 
-function Container5({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function Container5({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="content-stretch flex items-start justify-center min-h-px relative self-stretch shrink-0 w-[1061.81px]" data-name="Container">
-      <Container4 onNavigateToHome={onNavigateToHome} />
+      <Container4 onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
     </div>
   );
 }
@@ -258,21 +268,21 @@ function Container7() {
   );
 }
 
-function Section({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function Section({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-name="Section">
-      <Container5 onNavigateToHome={onNavigateToHome} />
+      <Container5 onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
       <Container7 />
     </div>
   );
 }
 
-function Header({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function Header({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="bg-[#faf7f0] relative shrink-0 w-full" data-name="Header">
       <div className="size-full">
         <div className="box-border content-stretch flex flex-col items-start pb-[27.01px] pt-[27.02px] px-[50px] relative w-full">
-          <Section onNavigateToHome={onNavigateToHome} />
+          <Section onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
         </div>
       </div>
     </div>
@@ -1584,10 +1594,10 @@ function Footer1() {
   );
 }
 
-function Content({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+function Content({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="absolute content-stretch flex flex-col gap-px items-start left-0 top-0 w-[1442px]" data-name="Content">
-      <Header onNavigateToHome={onNavigateToHome} />
+      <Header onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
       <HeroSection />
       <Information />
       <CpllectionEtEvenement />
@@ -1597,10 +1607,10 @@ function Content({ onNavigateToHome }: { onNavigateToHome: () => void }) {
   );
 }
 
-export default function ExplorerOeuvre({ onNavigateToHome }: { onNavigateToHome: () => void }) {
+export default function ExplorerOeuvre({ onNavigateToHome, onNavigateToVirtualTour }: { onNavigateToHome: () => void; onNavigateToVirtualTour?: () => void }) {
   return (
     <div className="bg-[#f2e8d5] relative size-full" data-name="Explorer Oeuvre">
-      <Content onNavigateToHome={onNavigateToHome} />
+      <Content onNavigateToHome={onNavigateToHome} onNavigateToVirtualTour={onNavigateToVirtualTour} />
     </div>
   );
 }

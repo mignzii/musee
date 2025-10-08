@@ -10,6 +10,7 @@ import MiniMap from './MiniMap';
 import WelcomeModal from './WelcomeModal';
 import LoadingSpinner from './LoadingSpinner';
 import OptimizedImmersiveControls from './OptimizedImmersiveControls';
+import AudioGuide from './AudioGuide';
 
 interface CompleteImmersiveTourProps {
   onNavigateToHome?: () => void;
@@ -380,6 +381,12 @@ export default function CompleteImmersiveTour({ onNavigateToHome }: CompleteImme
           <span className="ml-2 text-yellow-400">⭐ Interactive</span>
         )}
       </div>
+
+      {/* Guide Audio */}
+      <AudioGuide 
+        currentRoom={currentRoom} 
+        isVisible={showUI && !showWelcome} 
+      />
     </div>
   );
 }
