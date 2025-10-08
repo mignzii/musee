@@ -62,7 +62,7 @@ export default function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
         {/* Logo du Musée - Centré avec espacement généreux */}
         <div className="text-center mb-12">
           <img 
-            src="/src/assets/modal/logo.png" 
+            src="/modal/logo.png" 
             alt="Logo Musée des Civilisations Noires"
             style={{ 
               width: '96px', 
@@ -126,7 +126,7 @@ export default function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
                 }}
               >
                 <img 
-                  src="/src/assets/modal/navigation.png" 
+                  src="/modal/navigation.png" 
                   alt="Navigation du site"
                   style={{ width: '48px', height: '48px', objectFit: 'contain' }}
                 />
@@ -158,7 +158,7 @@ export default function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
                 }}
               >
                 <img 
-                  src="/src/assets/modal/zoom.png" 
+                  src="/modal/zoom.png" 
                   alt="Zoom sur une photo"
                   style={{ width: '48px', height: '48px', objectFit: 'contain' }}
                 />
@@ -190,7 +190,7 @@ export default function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
                 }}
               >
                 <img 
-                  src="/src/assets/modal/map.png" 
+                  src="/modal/map.png" 
                   alt="Carte 2D"
                   style={{ width: '48px', height: '48px', objectFit: 'contain' }}
                 />
@@ -221,7 +221,7 @@ export default function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
                 }}
               >
                 <img 
-                  src="/src/assets/modal/info.png" 
+                  src="/modal/info.png" 
                   alt="Information sur une œuvre"
                   style={{ width: '48px', height: '48px', objectFit: 'contain' }}
                 />
