@@ -47,9 +47,17 @@ function ItemLink() {
   );
 }
 
-function ItemLink1() {
+function ItemLink1({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
+  const handleClick = () => {
+    onNavigateToCollection();
+  };
+
   return (
-    <div className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[4]" data-name="Item → Link">
+    <div 
+      className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[4] cursor-pointer" 
+      data-name="Item → Link"
+      onClick={handleClick}
+    >
       <div className="flex flex-col font-['Inter:Medium',_sans-serif] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#242424] text-[19px] text-nowrap tracking-[0.2px]">
         <p className="leading-[28.5px] whitespace-pre">Exposition et Collection</p>
       </div>
@@ -87,11 +95,11 @@ function ItemLink4() {
   );
 }
 
-function NavList() {
+function NavList({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="content-stretch flex isolate items-start relative shrink-0" data-name="Nav → List">
       <ItemLink />
-      <ItemLink1 />
+      <ItemLink1 onNavigateToCollection={onNavigateToCollection} />
       <ItemLink2 />
       <ItemLink3 />
       <ItemLink4 />
@@ -99,12 +107,12 @@ function NavList() {
   );
 }
 
-function Margin1() {
+function Margin1({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="basis-0 grow max-w-[1085.81px] min-h-px min-w-px relative shrink-0" data-name="Margin">
       <div className="max-w-inherit size-full">
         <div className="box-border content-stretch flex flex-col items-start max-w-inherit pb-[8px] pl-0 pr-[24px] pt-[12px] relative w-full">
-          <NavList />
+          <NavList onNavigateToCollection={onNavigateToCollection} />
         </div>
       </div>
     </div>
@@ -202,13 +210,13 @@ function Margin3() {
   );
 }
 
-function Container4() {
+function Container4({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0" data-name="Container">
       <div className="flex flex-row items-center size-full">
         <div className="box-border content-stretch flex items-center px-[15px] py-0 relative size-full">
           <Margin />
-          <Margin1 />
+          <Margin1 onNavigateToCollection={onNavigateToCollection} />
           <Margin2 />
           <Margin3 />
         </div>
@@ -217,10 +225,10 @@ function Container4() {
   );
 }
 
-function Container5() {
+function Container5({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="content-stretch flex h-full items-start justify-center min-h-px relative shrink-0 w-[1061.81px]" data-name="Container">
-      <Container4 />
+      <Container4 onNavigateToCollection={onNavigateToCollection} />
     </div>
   );
 }
@@ -255,21 +263,21 @@ function Container7() {
   );
 }
 
-function Section() {
+function Section({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="content-stretch flex h-[80.88px] items-start justify-between relative shrink-0 w-full" data-name="Section">
-      <Container5 />
+      <Container5 onNavigateToCollection={onNavigateToCollection} />
       <Container7 />
     </div>
   );
 }
 
-function Header() {
+function Header({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="bg-[#faf7f0] relative shrink-0 w-full" data-name="Header">
       <div className="size-full">
         <div className="box-border content-stretch flex flex-col items-start pb-[27.01px] pt-[27.02px] px-[50px] relative w-full">
-          <Section />
+          <Section onNavigateToCollection={onNavigateToCollection} />
         </div>
       </div>
     </div>
@@ -2851,10 +2859,10 @@ function Footer1() {
   );
 }
 
-function Container106() {
+function Container106({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 top-0 w-full max-w-[1441px]" data-name="Container">
-      <Header />
+      <Header onNavigateToCollection={onNavigateToCollection} />
       <HeroSection />
       <APropos />
       <CollectionEtEvenement />
@@ -2866,10 +2874,10 @@ function Container106() {
   );
 }
 
-export default function Accueil() {
+export default function Accueil({ onNavigateToCollection }: { onNavigateToCollection: () => void }) {
   return (
     <div className="bg-[#f2e8d5] relative size-full" data-name="Accueil">
-      <Container106 />
+      <Container106 onNavigateToCollection={onNavigateToCollection} />
     </div>
   );
 }

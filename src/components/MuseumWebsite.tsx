@@ -1,455 +1,549 @@
-import { useState } from 'react';
-import { Play, ShoppingCart, Phone, Mail, Clock, MapPin, ArrowRight } from 'lucide-react';
-import { MuseumNavigation } from './MuseumNavigation';
-import { VirtualTourCarousel } from './VirtualTourCarousel';
-import { EventCard } from './EventCard';
-import { ArtworkGallery } from './ArtworkGallery';
-import { BlogCard } from './BlogCard';
+import React, { useState } from 'react';
+import { Play, Pause, Volume2, ChevronLeft, ChevronRight, Menu, X } from 'lucide-react';
+import { Button } from './ui/button';
+import { Card, CardContent } from './ui/card';
+import { Badge } from './ui/badge';
+import svgPaths from "../imports/svg-8ibcoib0hp";
+import imgImage13 from "figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
+import imgRectangle12312 from "figma:asset/3dec1125c1484391649747df3380d07d8920a7a1.png";
+import imgRectangle12313 from "figma:asset/aaf64882d25296bfe8e4d488d61f644d2a771c45.png";
+import imgRectangle12314 from "figma:asset/8f9332662f782de48b9f6aa0c81dd52b2e50c7d9.png";
+import imgRectangle12316 from "figma:asset/bc89288450089216ee693a954257c2d62f142724.png";
+import imgRectangle12315 from "figma:asset/9cc6a0ff2579afcef533f970476404a89e9c297b.png";
+import imgRectangle394 from "figma:asset/8a1f7503ffd68bc01b813781c9ca7e1699e85a2e.png";
+import imgRectangle396 from "figma:asset/d44bd07a0fd0a0ab9de3c456780a7b38d33524a5.png";
+import imgRectangle398 from "figma:asset/24fc70d68fb94de85be22b4b18adb0c22e4e78c4.png";
+import imgRectangle395 from "figma:asset/dd5b83737c63727a4df8f3905d262cb8d355f733.png";
+import imgRectangle397 from "figma:asset/90837034ff8c56ee9a701ced6e763659824fa733.png";
+import imgImage from "figma:asset/fe4a4e60379d20a3b5897cca0da0e3537f659bc1.png";
+import imgImage1 from "figma:asset/43bcd3e5c97c014efe43d35a6c0c8046e7609de2.png";
+import imgImage2 from "figma:asset/73763b379d91dd9a53f08032ae1f043937aeb119.png";
+import imgImage3 from "figma:asset/72a9613a2919e89593b3204ed694441056c8869d.png";
+import imgImage4 from "figma:asset/88782c78e87edcc71d2c001124b46cfdd231c1ea.png";
+import imgImage5 from "figma:asset/4c468b5d5380c497014e19e70ef6ff8a6b7fce39.png";
+import imgImage6 from "figma:asset/2165d3b2e33dbeb9284b5de54e758abcb533788d.png";
+import imgImage7 from "figma:asset/44f650c7d3e920b38d2cf16bc73194485f6be9c7.png";
 
-// Import all images
-import imgImage13 from "../imports/figma:asset/3dfc09fde94d1676b720112d3154e3321fe1758d.png";
-import imgImage20 from "../imports/figma:asset/29913987288b2001921738e459180dbcb25aeadb.png";
-import img663Thumb3MinJpg from "../imports/figma:asset/f92721b740f139b289b99437ffba433507318af8.png";
-import img663Thumb1MinJpg from "../imports/figma:asset/c00337eb05128f1969d4a2c5e691a981c3496e76.png";
-import img663Thumb2MinJpg from "../imports/figma:asset/120d15f2cafe1da0fa66ab8e0ba849a41d1820c1.png";
-import imgImage from "../imports/figma:asset/fe4a4e60379d20a3b5897cca0da0e3537f659bc1.png";
-import imgImage1 from "../imports/figma:asset/43bcd3e5c97c014efe43d35a6c0c8046e7609de2.png";
-import imgImage2 from "../imports/figma:asset/73763b379d91dd9a53f08032ae1f043937aeb119.png";
-import imgImage3 from "../imports/figma:asset/72a9613a2919e89593b3204ed694441056c8869d.png";
-import imgImage4 from "../imports/figma:asset/88782c78e87edcc71d2c001124b46cfdd231c1ea.png";
-import imgImage5 from "../imports/figma:asset/4c468b5d5380c497014e19e70ef6ff8a6b7fce39.png";
-import imgImage6 from "../imports/figma:asset/2165d3b2e33dbeb9284b5de54e758abcb533788d.png";
-import imgImage7 from "../imports/figma:asset/44f650c7d3e920b38d2cf16bc73194485f6be9c7.png";
-import imgEventImage6890X664Jpg from "../imports/figma:asset/b558645b3b29a39290f215bcf6d1501916967d40.png";
-import imgEventImage5890X664Jpg from "../imports/figma:asset/71cc7f0aba7f70446004ff9df8ce92a2207b404a.png";
-import imgEventImage4890X664Jpg from "../imports/figma:asset/9908c42b4208dee635d1ffdbd9abacd87156bbc6.png";
-import imgRectangle394 from "../imports/figma:asset/3302973b3d1d59dfec01c989383fd9f7d585e12a.png";
-import imgRectangle396 from "../imports/figma:asset/822a1d7a57aeb6ee36dbec6c681eae80bcaf32f9.png";
-import imgRectangle397 from "../imports/figma:asset/df1021caee8b77436de2e90d52ec3e80b26ca87b.png";
-import imgRectangle399 from "../imports/figma:asset/9cc6a0ff2579afcef533f970476404a89e9c297b.png";
-import imgBlogPost9890X664Jpg from "../imports/figma:asset/b39e2252ff9a423a05c88141859f46477d4bd7fc.png";
-import imgBlogPost10890X664Jpg from "../imports/figma:asset/9e353bf76d7181d53d3a4ef4ceeef8f55a89a4e0.png";
-import imgBlogPost11890X664Jpg from "../imports/figma:asset/264199c0a5afbebb8d7da9d21797230e756cbb70.png";
+const MuseumWebsite = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration] = useState(83); // 1:23 en secondes
+  const [selectedThumbnail, setSelectedThumbnail] = useState(4); // 5ème image sélectionnée par défaut
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-export function MuseumWebsite() {
-  const [activeSection, setActiveSection] = useState('decouvrir');
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const thumbnails = [
+    imgRectangle12312,
+    imgRectangle12313,
+    imgRectangle12314,
+    imgRectangle12316,
+    imgRectangle12315,
+    imgRectangle12313
+  ];
 
-  // Sample data for interactive components
   const artworks = [
-    { id: '1', image: imgImage, title: 'Art Traditionnel Africain', artist: 'Artiste Inconnu' },
-    { id: '2', image: imgImage1, title: 'Masque Ceremonial', artist: 'Maître Sculpteur' },
-    { id: '3', image: imgImage2, title: 'Textile Ancien', artist: 'Artisans du Mali' },
-    { id: '4', image: imgImage3, title: 'Sculpture Moderne', artist: 'Ousmane Sow' },
-    { id: '5', image: imgImage4, title: 'Poterie Traditionnelle', artist: 'Artisans du Sénégal' },
-    { id: '6', image: imgImage5, title: 'Art Contemporain', artist: 'El Hadji Sy' },
-    { id: '7', image: imgImage6, title: 'Bijoux Ancestraux', artist: 'Maîtres Bijoutiers' },
-    { id: '8', image: imgImage7, title: 'Instrument Musical', artist: 'Luthiers Traditionnels' }
+    { image: imgImage, title: "Masque cérémoniel" },
+    { image: imgImage1, title: "Sculpture ancestrale" },
+    { image: imgImage2, title: "Objets rituels" },
+    { image: imgImage3, title: "Art contemporain" },
+    { image: imgImage4, title: "Instruments traditionnels" },
+    { image: imgImage5, title: "Textiles anciens" },
+    { image: imgImage6, title: "Bijoux royaux" },
+    { image: imgImage7, title: "Poteries sacrées" }
   ];
 
-  const events = [
+  const exhibitions = [
     {
-      id: '1',
-      title: "David Hockney's Exhibition",
-      image: imgEventImage5890X664Jpg,
-      location: 'Dakar',
-      startDate: 'December 1, 2026 00:00',
-      endDate: 'January 2, 2027 00:00',
-      price: 'Gratuit',
-      eventNumber: '01',
-      month: 'Dec',
-      year: '2026'
+      image: imgRectangle397,
+      title: "Afrique, berceau de l'humanité",
+      link: "VISITE VIRTUELLE →"
     },
     {
-      id: '2',
-      title: "Marcel Duchamp's Exhibition",
-      image: imgEventImage4890X664Jpg,
-      location: 'Dakar',
-      startDate: 'November 2, 2026 00:00',
-      endDate: 'November 25, 2026 00:00',
-      price: 'Gratuit',
-      eventNumber: '02',
-      month: 'Nov',
-      year: '2026'
+      image: imgRectangle395,
+      title: "portraits historiques",
+      link: "VISITE VIRTUELLE →"
     },
     {
-      id: '3',
-      title: "Georges Seurat's Exhibition",
-      image: imgEventImage6890X664Jpg,
-      location: 'Dakar',
-      startDate: 'January 4, 2027 00:00',
-      endDate: 'January 27, 2027 00:00',
-      price: 'Gratuit',
-      eventNumber: '04',
-      month: 'Jan',
-      year: '2027'
+      image: imgRectangle395,
+      title: "femmes africaines marquantes",
+      link: "VISITE VIRTUELLE →"
+    },
+    {
+      image: imgRectangle394,
+      title: "Galerie des masques et des rituels",
+      link: "VISITE VIRTUELLE →"
+    },
+    {
+      image: imgRectangle396,
+      title: "Galerie de l'art",
+      link: "VISITE VIRTUELLE →"
+    },
+    {
+      image: imgRectangle398,
+      title: "Galerie des religions",
+      link: "VISITE VIRTUELLE →"
     }
   ];
 
-  const blogPosts = [
-    {
-      id: '1',
-      title: 'Do you need expensive art supplies to make good art?',
-      image: imgBlogPost9890X664Jpg,
-      category: 'Modern Art',
-      date: 'April 21, 2020',
-      commentCount: 0,
-      excerpt: 'Découvrez les secrets des grands maîtres et leurs techniques ancestrales...'
-    },
-    {
-      id: '2',
-      title: 'What do all the best museum websites do?',
-      image: imgBlogPost10890X664Jpg,
-      category: 'Modern Art',
-      date: 'April 21, 2020',
-      commentCount: 0,
-      excerpt: 'Une analyse des meilleures pratiques en matière de sites web de musées...'
-    },
-    {
-      id: '3',
-      title: 'European masterpieces from the Grasset collection',
-      image: imgBlogPost11890X664Jpg,
-      category: 'Modern Art',
-      date: 'April 21, 2020',
-      commentCount: 0,
-      excerpt: 'Plongez dans la richesse de la collection Grasset et ses œuvres exceptionnelles...'
-    }
-  ];
-
-  const virtualTourImages = [
-    { src: imgRectangle397, title: 'Masque', description: 'Découvrez l\'art traditionnel africain' },
-    { src: imgRectangle399, title: 'Salon sashimi', description: 'Lorem ipsum dolor sit amet consectetur. Bibendum nunc pellentesque in tincidunt tortor auctor tellus congue neque.' },
-    { src: imgRectangle394, title: 'Cheescake', description: 'Lorem ipsum dolor sit amet consectetur. Bibendum nunc pellentesque in tincidunt tortor auctor tellus congue neque.' },
-    { src: imgRectangle396, title: 'Collection Moderne', description: 'Art contemporain africain' },
-    { src: imgImage5, title: 'Galerie Principal', description: 'Notre exposition permanente' },
-    { src: imgImage6, title: 'Espace Culturel', description: 'Découvrez notre espace dédié aux événements' }
-  ];
-
-  const handleBuyTicket = () => {
-    console.log('Redirecting to ticket purchase...');
-    // Here you would redirect to ticket purchase page
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handlePlayVideo = () => {
-    setIsVideoPlaying(true);
-    console.log('Starting museum introduction video...');
-    // Here you would start playing the intro video
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = clickX / rect.width;
+    const newTime = Math.floor(percentage * duration);
+    setCurrentTime(newTime);
   };
 
   return (
-    <div className="min-h-screen bg-[#f2e8d5]">
+    <div className="bg-[#f2e8d5] relative min-h-screen">
       {/* Header */}
-      <header className="bg-[#faf7f0] px-12 py-6 sticky top-0 z-40 shadow-sm">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img src={imgImage13} alt="Musée des Civilisations Noires" className="h-20 w-auto" />
+      <header className="absolute bg-[#faf7f0] box-border content-stretch flex flex-col items-start left-0 pb-[27.01px] pt-[27.02px] px-[50px] right-0 top-0 z-50">
+        <div className="content-stretch flex items-start justify-between relative shrink-0 w-full">
+          <div className="content-stretch flex items-start justify-center min-h-px relative self-stretch shrink-0 w-[1061.81px]">
+            <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0">
+              <div className="flex flex-row items-center size-full">
+                <div className="box-border content-center flex flex-wrap gap-0 items-center px-[15px] py-0 relative size-full">
+                  {/* Logo */}
+                  <div className="box-border content-stretch flex flex-col items-start max-w-[1085.81px] pl-0 pr-[64px] py-[8px] relative shrink-0">
+                    <div className="h-[88.944px] relative shrink-0 w-[80px]">
+                      <img alt="Musée des Civilisations Noires" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage13} />
+                    </div>
+                  </div>
+
+                  {/* Navigation Desktop */}
+                  <div className="basis-0 grow max-w-[1085.81px] min-h-px min-w-px relative shrink-0 hidden md:block">
+                    <div className="max-w-inherit size-full">
+                      <div className="box-border content-stretch flex flex-col items-start max-w-inherit pb-[8px] pl-0 pr-[24px] pt-[12px] relative w-full">
+                        <nav className="content-stretch flex isolate items-start relative shrink-0">
+                          <a href="#" className="h-[61px] relative shrink-0 w-[120px] z-[5] flex items-center justify-center">
+                            <span className="font-['Inter:Medium',_sans-serif] font-medium text-[#242424] text-[18.9px] tracking-[0.2px]">Découvrir</span>
+                          </a>
+                          <a href="#exposition" className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[4] group">
+                            <span className="font-['Inter:Medium',_sans-serif] font-medium text-[#242424] text-[19px] tracking-[0.2px] group-hover:text-[#ff5800] transition-colors">Exposition et Collection</span>
+                            <div className="bg-[#242424] h-[2px] shrink-0 w-[189px] group-hover:bg-[#ff5800] transition-colors" />
+                          </a>
+                          <a href="#visite" className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[3] hover:text-[#ff5800] transition-colors">
+                            <span className="font-['Inter:Medium',_sans-serif] font-medium text-[#242424] text-[19px] tracking-[0.2px]">Visite Virtuelle</span>
+                          </a>
+                          <a href="#evenements" className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[2] hover:text-[#ff5800] transition-colors">
+                            <span className="font-['Inter:Medium',_sans-serif] font-medium text-[#242424] text-[18.7px] tracking-[0.2px]">Evènements</span>
+                          </a>
+                          <a href="#boutiques" className="box-border content-stretch flex flex-col items-start pb-[17.7px] pt-[14.18px] px-[15.2px] relative shrink-0 z-[1] hover:text-[#ff5800] transition-colors">
+                            <span className="font-['Inter:Medium',_sans-serif] font-medium text-[#242424] text-[19px] tracking-[0.2px]">Boutiques</span>
+                          </a>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile Menu Button */}
+                  <button
+                    className="md:hidden p-2"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  >
+                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                  </button>
+
+                  {/* Cart & Search Icons */}
+                  <div className="box-border content-stretch flex flex-col items-start max-w-[1085.81px] pb-[7.99px] pl-[25px] pr-[24px] pt-[6.39px] relative shrink-0">
+                    <div className="box-border content-stretch flex items-start pb-0 pt-[1.02px] px-0 relative shrink-0">
+                      <div className="box-border content-stretch flex items-start pb-[1.38px] pt-px px-0 relative shrink-0 w-[18px]">
+                        <div className="flex items-center justify-center relative shrink-0">
+                          <div className="flex-none scale-y-[-100%]">
+                            <div className="h-[24px] relative w-[18px]">
+                              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 24">
+                                <path d={svgPaths.p3f980d00} fill="#242424" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute bg-[#ff5800] bottom-[-2.99px] box-border content-stretch flex flex-col items-center min-h-[15px] min-w-[15px] pl-[4.55px] pr-[4.56px] py-0 right-[-6.11px] rounded-[8px]">
+                        <span className="font-['Kumbh_Sans:Medium',_sans-serif] font-medium text-[#242424] text-[10px] text-center">0</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-border content-stretch flex flex-col items-start max-w-[1061.81px] pb-[7.63px] pl-[8px] pr-0 pt-[6.89px] relative shrink-0">
+                    <div className="box-border content-stretch flex flex-col h-[26px] items-center pl-[5.61px] pr-0 py-0 relative shrink-0 w-[22.39px]">
+                      <div className="box-border content-stretch flex items-start p-px relative shrink-0">
+                        <div className="flex items-center justify-center relative shrink-0">
+                          <div className="flex-none scale-y-[-100%]">
+                            <div className="relative size-[24px]">
+                              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+                                <path d={svgPaths.p10e0c900} fill="#242424" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Navigation */}
-          <MuseumNavigation 
-            activeSection={activeSection} 
-            onSectionChange={setActiveSection} 
-          />
-
-          {/* Shopping cart */}
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <ShoppingCart className="w-6 h-6 text-[#242424]" />
-              <span className="absolute -top-2 -right-2 bg-[#ff5800] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
+          {/* CTA Button */}
+          <div className="content-stretch flex items-start justify-center min-h-px relative self-stretch shrink-0 w-[268.36px]">
+            <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0">
+              <div className="flex flex-row items-center justify-end size-full">
+                <div className="box-border content-center flex flex-wrap gap-0 items-center justify-end px-[15px] py-0 relative size-full">
+                  <Button className="bg-[#ff5800] hover:bg-[#e04e00] text-[#101010] px-[26px] py-[16px] rounded-[4px] font-['Jost:Medium',_sans-serif] font-medium text-[18px]">
+                    Acheter un billet
+                  </Button>
+                </div>
+              </div>
             </div>
-            <button 
-              onClick={handleBuyTicket}
-              className="bg-[#ff5800] text-white px-6 py-3 rounded-md hover:bg-[#ff5800]/90 transition-colors font-medium"
-            >
-              Acheter un billet
-            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-[#faf7f0] border-t border-gray-200 py-4">
+            <nav className="flex flex-col space-y-4 px-[50px]">
+              <a href="#" className="text-[#242424] hover:text-[#ff5800] transition-colors">Découvrir</a>
+              <a href="#exposition" className="text-[#242424] hover:text-[#ff5800] transition-colors">Exposition et Collection</a>
+              <a href="#visite" className="text-[#242424] hover:text-[#ff5800] transition-colors">Visite Virtuelle</a>
+              <a href="#evenements" className="text-[#242424] hover:text-[#ff5800] transition-colors">Evènements</a>
+              <a href="#boutiques" className="text-[#242424] hover:text-[#ff5800] transition-colors">Boutiques</a>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
-      <section className="relative  py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="flex items-center gap-20">
-            {/* Hero Content */}
-            <div className="flex-1 space-y-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="flex gap-5">
-                  <img src={img663Thumb3MinJpg} alt="Aperçu 1" className="w-40 h-28 object-cover rounded-lg border-2 border-[#ff5800]" />
-                  <img src={img663Thumb1MinJpg} alt="Aperçu 2" className="w-40 h-28 object-cover rounded-lg" />
-                  <img src={img663Thumb2MinJpg} alt="Aperçu 3" className="w-40 h-28 object-cover rounded-lg" />
-                </div>
-                <div className="text-[#ff5800] font-['Inter'] text-base tracking-wide">
-                  <span className="text-[#ff5800]">01</span>
-                  <span className="text-[#2f2f2f]"> / 03</span>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <h1 className="text-7xl font-semibold font-['Jost'] text-[#242424] leading-tight">
-                  <div>Célébrer</div>
-                  <div>La grandeur des</div>
-                  <div>Civilisations Noires</div>
-                </h1>
-                
-                <p className="text-lg text-[#5f5f5f] font-['DM_Sans'] max-w-2xl leading-relaxed">
-                  De nos ancêtres bâtisseurs aux créateurs d'aujourd'hui,
-                  le Musée des Civilisations Noires célèbre la grandeur et la diversité de l'Afrique.
-                </p>
-
-                <button className="flex items-center gap-3 border-2 border-[#ff5800] text-[#2f2f2f] px-8 py-4 rounded-md hover:bg-[#ff5800] hover:text-white transition-colors font-medium">
-                  <ArrowRight className="w-5 h-5" />
-                  Visiter le musée
-                </button>
-              </div>
-            </div>
-
-            {/* Hero Image */}
-            <div className="relative">
-              <div className="w-[500px] h-[655px] relative">
-                <img 
-                  src={imgImage20} 
-                  alt="Musée des Civilisations Noires" 
-                  className="w-full h-full object-cover border-8 border-[#ff5800]"
-                />
-                <div className="absolute inset-0 bg-black/20" />
-                
-                {/* Play button */}
-                <button
-                  onClick={handlePlayVideo}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                           w-24 h-24 bg-white rounded-full flex items-center justify-center
-                           hover:scale-110 transition-transform shadow-lg"
-                >
-                  <Play className="w-8 h-8 text-[#ff5800] ml-1" fill="currentColor" />
-                </button>
-              </div>
-            </div>
+      <div className="absolute bg-[#242424] h-[274px] left-0 overflow-clip top-[141px] w-full">
+        <div className="absolute flex flex-col font-['Jost:SemiBold',_sans-serif] font-semibold justify-center leading-[0] left-1/2 text-[56px] text-center text-white top-[123px] translate-x-[-50%] translate-y-[-50%] w-[966px] max-w-[90%]">
+          <p className="leading-[70px]">Entrez dans l'univers vivant des civilisations noires</p>
+        </div>
+        
+        {/* Breadcrumb */}
+        <div className="absolute content-stretch flex gap-[4px] items-center left-1/2 top-[204px] translate-x-[-50%]">
+          <div className="box-border content-stretch flex gap-[8px] h-[45px] items-center px-0 py-[8px] relative shrink-0">
+            <p className="capitalize font-['DM_Sans:Regular',_sans-serif] font-normal leading-[1.8] relative shrink-0 text-[#d2d3d5] text-[16px] text-nowrap whitespace-pre">
+              Exposition et Collection
+            </p>
+          </div>
+          <div className="relative shrink-0 size-[16px]">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+              <path d={svgPaths.p3b299880} fill="white" fillOpacity="0.5" />
+            </svg>
+          </div>
+          <div className="box-border content-stretch flex gap-[8px] h-[45px] items-center px-0 py-[8px] relative shrink-0">
+            <p className="capitalize font-['DM_Sans:Bold',_sans-serif] font-bold leading-[1.4] relative shrink-0 text-[16px] text-nowrap text-white whitespace-pre">
+              Masques et rituels
+            </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Museum Description */}
-      <section className="bg-[#242424] py-20">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="flex items-center gap-20">
-            <div className="relative">
-              <div className="w-[500px] h-[655px] relative">
-                <img 
-                  src={imgImage20} 
-                  alt="Intérieur du musée" 
-                  className="w-full h-full object-cover border-6 border-[#ff5800]"
-                />
-                <div className="absolute inset-0 bg-black/20" />
-                
-                <button
-                  onClick={handlePlayVideo}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                           w-24 h-24 bg-white rounded-full flex items-center justify-center
-                           hover:scale-110 transition-transform shadow-lg"
+      {/* Main Content - Mask Display */}
+      <div id="exposition" className="absolute content-stretch flex gap-[36px] items-center left-1/2 top-[475px] translate-x-[-50%] w-[1320px] max-w-[95%]">
+        {/* Image Gallery */}
+        <div className="content-stretch flex gap-[24px] items-center relative shrink-0">
+          {/* Thumbnail Column */}
+          <div className="flex flex-row items-center self-stretch">
+            <div className="content-stretch flex flex-col h-full items-start justify-between relative shrink-0">
+              {thumbnails.map((thumb, index) => (
+                <div 
+                  key={index} 
+                  className={`h-[78px] relative shrink-0 w-[80px] cursor-pointer transition-all hover:scale-105 ${
+                    selectedThumbnail === index ? 'ring-2 ring-[#ff5800]' : ''
+                  }`}
+                  onClick={() => setSelectedThumbnail(index)}
                 >
-                  <Play className="w-8 h-8 text-[#ff5800] ml-1" fill="currentColor" />
-                </button>
-              </div>
-            </div>
+                  <img 
+                    alt={`Aperçu ${index + 1}`} 
+                    className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" 
+                    src={thumb} 
+                  />
+                  {selectedThumbnail === index && (
+                    <div className="absolute border-2 border-[#ff5800] border-solid inset-0" />
+                  )}
+                </div>
+              ))}
 
-            <div className="flex-1 text-white space-y-6">
-              <h2 className="text-5xl font-semibold font-['Jost'] leading-tight">
-                Le Musée – L'âme du patrimoine
-              </h2>
+              {/* Navigation Arrows */}
+              <button 
+                className="absolute top-0 left-0 w-[32px] h-[80px] backdrop-blur-md bg-white/80 border border-[#dfdfdf] flex items-center justify-center hover:bg-white/90 transition-all"
+                onClick={() => setSelectedThumbnail(Math.max(0, selectedThumbnail - 1))}
+                disabled={selectedThumbnail === 0}
+              >
+                <ChevronLeft size={16} className="text-[#0C0C0C]" />
+              </button>
               
-              <div className="space-y-4 text-lg leading-relaxed">
+              <button 
+                className="absolute bottom-0 left-0 w-[32px] h-[80px] backdrop-blur-md bg-white/80 border border-[#dfdfdf] flex items-center justify-center hover:bg-white/90 transition-all"
+                onClick={() => setSelectedThumbnail(Math.min(thumbnails.length - 1, selectedThumbnail + 1))}
+                disabled={selectedThumbnail === thumbnails.length - 1}
+              >
+                <ChevronRight size={16} className="text-[#0C0C0C]" />
+              </button>
+            </div>
+          </div>
+
+          {/* Main Image */}
+          <div className="h-[605px] relative shrink-0 w-[648px]">
+            <img 
+              alt="Masque Bamiléké aux grandes oreilles" 
+              className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full rounded-lg shadow-lg" 
+              src={thumbnails[selectedThumbnail]} 
+            />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="content-stretch flex flex-col gap-[42px] items-center relative shrink-0 w-[505px]">
+          <div className="content-stretch flex flex-col gap-[16px] items-start leading-[0] relative shrink-0 w-[467px]">
+            <div className="content-stretch flex flex-col gap-[11px] items-center relative shrink-0 w-full">
+              <h1 className="font-['Jost:SemiBold',_sans-serif] font-semibold text-[#242424] text-[48px] leading-[61px] w-full">
+                Masque Bamiléké aux grandes oreilles
+              </h1>
+              <div className="font-['Jost:Medium',_sans-serif] font-medium text-[#2f2f2f] text-[18px] leading-[normal] w-full">
                 <p>
-                  Construit à Dakar, cœur battant de l'Afrique, le Musée des Civilisations Noires 
-                  est un hommage vivant à la créativité du continent.
-                </p>
-                <p>
-                  le Musée des Civilisations noires (MCN) a été inauguré le 6 décembre 2018 par le 
-                  Président Macky Sall. Le MCN œuvre depuis lors pour la valorisation de l'apport des 
-                  Civilisations noires au patrimoine universel de l'humanité. Ainsi, le visiteur qui 
-                  franchit la porte de la case à impluvium qui a inspiré son architecture rencontre tout 
-                  autour du grand Baobab de l'artiste haïtien Edouard Duval-Carrié, l'exposition : 
-                  l'Afrique, berceau de l'humanité.
+                  Origine : Cameroun<br />
+                  Matériau : Bois<br />
+                  Dimensions : 130 × 65 cm
                 </p>
               </div>
+            </div>
+            <div className="font-['Jost:Regular',_sans-serif] font-normal text-[#2f2f2f] text-[18px] leading-[normal] w-full">
+              <p className="mb-4">Ce masque Bamiléké aux grandes oreilles provient des hautes terres de l'Ouest du Cameroun, une région riche en traditions royales et spirituelles.</p>
+              <p className="mb-4">Symbole de sagesse, d'écoute et de pouvoir, ce masque était porté lors de cérémonies rituelles destinées à honorer les ancêtres ou à marquer les grandes fêtes du royaume.</p>
+              <p>Les oreilles démesurées évoquent la capacité du chef à entendre la voix du peuple et des esprits.</p>
+            </div>
+          </div>
 
-              <div className="flex gap-5 pt-6">
-                <img src={img663Thumb1MinJpg} alt="Galerie 1" className="w-32 h-24 object-cover rounded-lg" />
-                <img src={img663Thumb2MinJpg} alt="Galerie 2" className="w-32 h-24 object-cover rounded-lg" />
-                <img src={img663Thumb3MinJpg} alt="Galerie 3" className="w-32 h-24 object-cover rounded-lg" />
+          {/* Audio Player */}
+          <div className="bg-[#f1f3f4] box-border content-stretch flex gap-[12px] items-center px-[14px] py-[15px] relative rounded-[200px] shrink-0 w-[477px]">
+            <button onClick={togglePlay} className="flex items-center justify-center">
+              {isPlaying ? (
+                <Pause size={22} className="text-black" />
+              ) : (
+                <Play size={22} className="text-black" />
+              )}
+            </button>
+            
+            <span className="font-['Roboto:Regular',_sans-serif] font-normal text-[14px] text-black text-nowrap whitespace-pre">
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </span>
+            
+            <div 
+              className="basis-0 content-stretch flex grow items-start min-h-px min-w-px overflow-clip relative rounded-[200px] shrink-0 cursor-pointer"
+              onClick={handleProgressClick}
+            >
+              <div className="basis-0 bg-[#d9d9d9] grow h-[4px] min-h-px min-w-px shrink-0" />
+              <div 
+                className="absolute bg-[#595959] h-[4px] left-0 rounded-[200px] top-0 transition-all duration-300" 
+                style={{ width: `${(currentTime / duration) * 100}%` }}
+              />
+            </div>
+            
+            <Volume2 size={22} className="text-black" />
+            
+            <div className="content-stretch flex gap-[4px] items-center relative shrink-0">
+              <div className="relative shrink-0 size-[20px]">
+                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+                  <path d={svgPaths.p3db58f80} fill="#00853F" />
+                  <path d={svgPaths.p371d5d00} fill="#FDEF42" />
+                  <path d={svgPaths.p124c01f0} fill="#E31B23" />
+                  <path d={svgPaths.p28202880} fill="#00853F" />
+                </svg>
+              </div>
+              <ChevronLeft size={22} className="text-[#333333] rotate-180" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Virtual Exhibitions Section */}
+      <div className="absolute bg-[#242424] h-[802px] left-1/2 overflow-clip top-[1993px] translate-x-[-50%] w-full">
+        {/* Title */}
+        <div className="absolute content-stretch flex flex-col gap-[20px] h-[198px] items-center leading-[0] left-1/2 text-center text-white top-[91px] translate-x-[-50%] w-[948px] max-w-[90%]">
+          <h2 className="font-['Jost:SemiBold',_sans-serif] font-semibold text-[56px] leading-[72px] text-nowrap">
+            Plongez au cœur du musée
+          </h2>
+          <p className="font-['Jost:Regular',_sans-serif] font-normal text-[18px] leading-[normal] w-[695px] max-w-full">
+            Découvrez le Musée des Civilisations Noires à travers une expérience virtuelle unique. Parcourez les galeries, admirez les œuvres, et laissez-vous guider par les récits qui font vibrer l'histoire du continent africain.
+          </p>
+        </div>
+
+        {/* Exhibitions Carousel */}
+        <div id="visite" className="absolute bg-[#2f2f2f] h-[450px] left-[calc(50%+0.5px)] overflow-x-auto overflow-y-clip top-[278px] translate-x-[-50%] w-full max-w-[1307px]">
+          <div className="flex gap-4 h-full p-4">
+            {exhibitions.map((exhibition, index) => (
+              <Card key={index} className="relative min-w-[400px] h-full bg-transparent border-none overflow-hidden group cursor-pointer">
+                <div className="absolute inset-0">
+                  <img 
+                    alt={exhibition.title} 
+                    className="w-full h-full object-cover" 
+                    src={exhibition.image} 
+                  />
+                  <div className="absolute bg-[rgba(0,0,0,0.2)] inset-0 group-hover:bg-[rgba(0,0,0,0.4)] transition-all" />
+                </div>
+                <CardContent className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="font-['Bebas_Neue:Regular',_sans-serif] text-[32px] leading-[normal] mb-4">
+                    {exhibition.title}
+                  </h3>
+                  <p className="font-['Inter:Semi_Bold',_sans-serif] font-semibold text-[16px] leading-[24px] group-hover:text-[#ff5800] transition-colors">
+                    {exhibition.link}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Artworks Gallery Section */}
+      <div className="absolute bg-[#f2e8d5] h-[889px] left-[calc(50%+1px)] overflow-clip top-[1104px] translate-x-[-50%] w-full">
+        {/* Title */}
+        <div className="absolute content-stretch flex flex-col gap-[10px] items-center left-[calc(50%+0.5px)] top-[50px] translate-x-[-50%] w-[715px] max-w-[90%]">
+          <h2 className="font-['Jost:SemiBold',_sans-serif] font-semibold text-[#242424] text-[56px] leading-[normal] w-full text-center">
+            Explorer les Oeuvres et Arts
+          </h2>
+        </div>
+
+        {/* Masonry Grid */}
+        <div className="absolute content-stretch flex flex-col items-start left-[30px] right-[30px] top-[calc(50%+72.61px)] translate-y-[-50%]">
+          <div className="content-stretch flex items-start justify-center relative shrink-0 w-full">
+            <div className="basis-0 content-stretch flex flex-col grow items-start min-h-px min-w-px relative self-stretch shrink-0">
+              <div className="h-[634.22px] relative shrink-0 w-full">
+                <div className="grid grid-cols-4 gap-4 h-full">
+                  {artworks.map((artwork, index) => (
+                    <Card 
+                      key={index} 
+                      className={`relative overflow-hidden bg-transparent border-none cursor-pointer group ${
+                        index === 0 ? 'row-span-1' : 
+                        index === 1 ? 'row-span-2' : 
+                        index === 2 ? 'row-span-2' : 
+                        index === 3 ? 'row-span-1' : 
+                        index === 4 ? 'row-span-1' : 
+                        index === 5 ? 'row-span-1' : 
+                        index === 6 ? 'row-span-2' : 
+                        'row-span-1'
+                      }`}
+                    >
+                      <div className="absolute inset-0">
+                        <img 
+                          alt={artwork.title} 
+                          className="w-full h-full object-cover transition-transform group-hover:scale-110" 
+                          src={artwork.image} 
+                        />
+                        <div className="absolute bg-[#040404] inset-0 opacity-0 group-hover:opacity-20 transition-opacity" />
+                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Badge variant="secondary" className="bg-white/90 text-black">
+                          {artwork.title}
+                        </Badge>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Artworks Gallery */}
-      <section className="bg-[#f2e8d5] py-20">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-semibold font-['Jost'] text-[#242424] mb-4">
-              Explorer les Oeuvres et Arts
-            </h2>
-            <p className="text-lg text-[#5f5f5f] max-w-2xl mx-auto">
-              En parcourant nos galeries, vous explorez l'âme de l'Afrique, son dialogue avec le monde, 
-              et la puissance symbolique de ses créations.
-            </p>
-          </div>
-          
-          <ArtworkGallery artworks={artworks} />
-          
-          <div className="text-center mt-12">
-            <button className="flex items-center gap-3 border-2 border-[#ff5800] text-[#2f2f2f] px-8 py-4 rounded-md hover:bg-[#ff5800] hover:text-white transition-colors font-medium mx-auto">
-              <ArrowRight className="w-5 h-5" />
-              Voir Plus d'oeuvres
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Virtual Tour */}
-      <section className="bg-[#242424] py-20">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="text-center text-white mb-16">
-            <h2 className="text-5xl font-semibold font-['Jost'] mb-6">
-              Plongez au cœur du musée
-            </h2>
-            <p className="text-lg max-w-2xl mx-auto leading-relaxed">
-              Découvrez le Musée des Civilisations Noires à travers une expérience virtuelle unique. 
-              Parcourez les galeries, admirez les œuvres, et laissez-vous guider par les récits qui 
-              font vibrer l'histoire du continent africain.
-            </p>
-          </div>
-          
-          <VirtualTourCarousel images={virtualTourImages} />
-          
-          <div className="text-center mt-12">
-            <button className="flex items-center gap-3 border-2 border-[#ff5800] text-white px-8 py-4 rounded-md hover:bg-[#ff5800] transition-colors font-medium mx-auto">
-              <ArrowRight className="w-5 h-5" />
-              Visite Virtuelle
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Events */}
-      <section className="bg-[#f2e8d5] py-20">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="flex items-center justify-between mb-16">
-            <h2 className="text-5xl font-semibold font-['Jost'] text-[#242424]">
-              Evènement à venir
-            </h2>
-            <button className="text-[#040404] font-medium hover:text-[#ff5800] transition-colors flex items-center gap-2">
-              All Events
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            {events.map((event) => (
-              <EventCard key={event.id} {...event} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog */}
-      <section className="bg-[#242424] py-20">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="flex items-center justify-between mb-16">
-            <h2 className="text-5xl font-semibold font-['Jost'] text-white">
-              Articles récents
-            </h2>
-            <button className="text-white font-medium hover:text-[#ff5800] transition-colors flex items-center gap-2">
-              All Posts
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <BlogCard key={post.id} {...post} />
-            ))}
-          </div>
-        </div>
-      </section>
+      </div>
 
       {/* Footer */}
-      <footer className="bg-[#faf7f0] py-20">
-        <div className="max-w-7xl mx-auto px-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            {/* Navigation */}
-            <div>
-              <h3 className="text-[#101010] text-lg font-bold font-['Jost'] mb-4">Navigation</h3>
-              <div className="space-y-3 text-[#101010] font-['DM_Sans']">
-                <div className="opacity-50 cursor-pointer hover:opacity-100 transition-opacity">Découvrir</div>
-                <div className="opacity-50 cursor-pointer hover:opacity-100 transition-opacity">Exposition et Collection</div>
-                <div className="opacity-50 cursor-pointer hover:opacity-100 transition-opacity">Visite Virtuelle</div>
-                <div className="opacity-50 cursor-pointer hover:opacity-100 transition-opacity">Evenement</div>
-                <div className="opacity-50 cursor-pointer hover:opacity-100 transition-opacity">Boutique</div>
-                <div className="opacity-50 cursor-pointer hover:opacity-100 transition-opacity">Acheter un Ticket</div>
-              </div>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-[#101010] text-lg font-bold font-['Jost'] mb-4">Contact</h3>
-              <div className="space-y-3 text-[#101010] font-['DM_Sans']">
-                <div className="opacity-50 flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  +221 33 889 11 80
-                </div>
-                <div className="opacity-50 flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  mcn@gmail.com
+      <div className="absolute bottom-0 h-[652px] left-0 w-full">
+        <footer className="absolute bg-[#faf7f0] box-border content-stretch flex flex-col gap-[10px] items-center justify-center left-1/2 px-[60px] py-[65px] top-1/2 translate-x-[-50%] translate-y-[-50%] w-full">
+          <div className="box-border content-stretch flex flex-col h-[522px] items-center pb-[20px] pt-0 px-0 relative shrink-0 w-full max-w-6xl">
+            {/* Footer Content */}
+            <div className="box-border content-stretch flex gap-[119px] items-start mb-[-20px] relative shrink-0 flex-wrap">
+              {/* Navigation */}
+              <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0">
+                <h3 className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] text-[#101010] text-[18px]">Navigation</h3>
+                <div className="content-stretch flex flex-col font-['DM_Sans:Medium',_sans-serif] font-medium gap-[10px] items-start leading-[normal] text-[#101010] text-[18px]">
+                  <a href="#" className="opacity-50 hover:opacity-100 transition-opacity">Découvrir</a>
+                  <a href="#exposition" className="opacity-50 hover:opacity-100 transition-opacity">Exposition et Collection</a>
+                  <a href="#visite" className="opacity-50 hover:opacity-100 transition-opacity">Visite Virtuelle</a>
+                  <a href="#evenements" className="opacity-50 hover:opacity-100 transition-opacity">Evenement</a>
+                  <a href="#boutiques" className="opacity-50 hover:opacity-100 transition-opacity">Boutique</a>
+                  <a href="#" className="opacity-50 hover:opacity-100 transition-opacity">Acheter un Ticket</a>
                 </div>
               </div>
-            </div>
 
-            {/* Address */}
-            <div>
-              <h3 className="text-[#101010] text-lg font-bold font-['Jost'] mb-4">Adresse</h3>
-              <div className="opacity-50 text-[#101010] font-['DM_Sans'] underline cursor-pointer hover:opacity-100 transition-opacity">
-                Musée des Civilisations noires, Dakar
+              {/* Contact */}
+              <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0">
+                <h3 className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] text-[#101010] text-[18px]">Contact</h3>
+                <div className="content-stretch flex flex-col font-['DM_Sans:Medium',_sans-serif] font-medium gap-[11px] items-start leading-[normal] text-[#101010] text-[18px]">
+                  <a href="tel:+22133889118" className="opacity-50 hover:opacity-100 transition-opacity underline">+221 33 889 11 80</a>
+                  <a href="mailto:mcn@gmail.com" className="opacity-50 hover:opacity-100 transition-opacity">mcn@gmail.com</a>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0">
+                <h3 className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] text-[#101010] text-[18px]">Adresse</h3>
+                <a href="#" className="font-['DM_Sans:Medium',_sans-serif] font-medium leading-[normal] opacity-50 text-[#101010] text-[18px] underline hover:opacity-100 transition-opacity">
+                  Musée des Civilisations noires, Dakar
+                </a>
+              </div>
+
+              {/* Hours */}
+              <div className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0">
+                <h3 className="font-['Jost:Bold',_sans-serif] font-bold leading-[28px] text-[#101010] text-[18px]">Horaires</h3>
+                <div className="font-['DM_Sans:Medium',_sans-serif] font-medium leading-[30px] opacity-50 text-[#101010] text-[18px]">
+                  <p>lundi	Fermé</p>
+                  <p>mardi	10:00–19:00</p>
+                  <p>mercredi	10:00–19:00</p>
+                  <p>jeudi	10:00–19:00</p>
+                  <p>vendredi	10:00–19:00</p>
+                  <p>samedi	10:00–19:00</p>
+                  <p>dimanche	10:00–19:00</p>
+                </div>
               </div>
             </div>
 
-            {/* Hours */}
-            <div>
-              <h3 className="text-[#101010] text-lg font-bold font-['Jost'] mb-4">Horaires</h3>
-              <div className="space-y-1 text-[#101010] font-['DM_Sans'] opacity-50 text-sm">
-                <div>lundi: Fermé</div>
-                <div>mardi: 10:00–19:00</div>
-                <div>mercredi: 10:00–19:00</div>
-                <div>jeudi: 10:00–19:00</div>
-                <div>vendredi: 10:00–19:00</div>
-                <div>samedi: 10:00–19:00</div>
-                <div>dimanche: 10:00–19:00</div>
+            {/* Footer Bottom */}
+            <div className="box-border content-stretch flex flex-col gap-[25px] items-center mb-[-20px] relative shrink-0">
+              <div className="h-[221.247px] relative shrink-0 w-[199px]">
+                <img alt="Logo du musée" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgImage13} />
+              </div>
+              <p className="font-['Jost:Regular',_sans-serif] font-normal leading-[26px] text-[#101010] text-[16px] text-center">
+                © 2018 - 2025 Musée des Civilisations Noires. Tous droits réservés.
+              </p>
+              
+              {/* Social Media */}
+              <div className="content-stretch flex gap-[27px] items-center relative shrink-0">
+                <a href="#" className="hover:opacity-70 transition-opacity">
+                  <svg className="w-[8.571px] h-[18.341px]" fill="none" preserveAspectRatio="none" viewBox="0 0 9 19">
+                    <path d={svgPaths.p1b369f80} fill="#101010" />
+                  </svg>
+                </a>
+                <a href="#" className="hover:opacity-70 transition-opacity">
+                  <svg className="w-[19.178px] h-[15.495px]" fill="none" preserveAspectRatio="none" viewBox="0 0 20 16">
+                    <path d={svgPaths.p34662d00} fill="#101010" />
+                  </svg>
+                </a>
+                <a href="#" className="hover:opacity-70 transition-opacity">
+                  <svg className="w-[20px] h-[19.891px]" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+                    <path d={svgPaths.pd4f8700} fill="#101010" />
+                  </svg>
+                </a>
+                <a href="#" className="hover:opacity-70 transition-opacity">
+                  <svg className="w-[15.565px] h-[16.151px]" fill="none" preserveAspectRatio="none" viewBox="0 0 16 17">
+                    <path d={svgPaths.p3a18d900} fill="#101010" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
-
-          {/* Footer bottom */}
-          <div className="text-center border-t border-gray-200 pt-12">
-            <img src={imgImage13} alt="Logo MCN" className="h-24 mx-auto mb-6" />
-            <p className="text-[#101010] font-['Jost'] mb-6">
-              © 2018 - 2025 Musée des Civilisations Noires. Tous droits réservés.
-            </p>
-            <div className="flex items-center justify-center gap-6">
-              {/* Social media icons would go here */}
-              <div className="flex gap-4">
-                <div className="w-8 h-8 bg-[#101010] rounded"></div>
-                <div className="w-8 h-8 bg-[#101010] rounded"></div>
-                <div className="w-8 h-8 bg-[#101010] rounded"></div>
-                <div className="w-8 h-8 bg-[#101010] rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
-}
+};
+
+export default MuseumWebsite;
